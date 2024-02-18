@@ -1,0 +1,53 @@
+:root{
+    --main-colour: #3044C5;
+    --secondary-colour: gray;
+    --tertiary-colour: #111;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav{
+    background-color: var(--main-colour);
+}
+
+.nav-link{
+    color: var(--secondary-colour) !important;
+}
+
+.active, .navbar-brand{
+    color: white !important;
+}
+
+.nav-link:hover{
+    color: white !important;
+}
+
+footer{
+    margin-top: auto;
+    border-top: 2px solid var(--tertiary-colour);
+}
+
+footer i{
+    font-size: 1.5em;
+    color: var(--tertiary-colour);
+}
+
+.blue-background{
+    background-color: var(--main-colour);
+    color: white;
+}
+
+.carousel-item {
+    height: 50vh;
+    max-height: 800px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
