@@ -27,7 +27,10 @@ INSTALLED_APPS = [
 
     # Custom apps
     'website',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
