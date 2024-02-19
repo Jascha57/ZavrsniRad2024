@@ -2,12 +2,14 @@ from django.contrib import admin
 from .models import *
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'slug', 'description')
-    prepopulated_fields = {'slug': ('title',)}
+    model = Event
+    list_display = ('title', 'date', 'description')
+    readonly_fields = ('slug',)
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'slug', 'description', 'short_description')
-    prepopulated_fields = {'slug': ('title',)}
+    model = News
+    list_display = ('title', 'date', 'description', 'short_description')
+    readonly_fields = ('slug',)
 
-admin.site.register(Event)
-admin.site.register(News)
+admin.site.register(Event, EventAdmin)
+admin.site.register(News, NewsAdmin)
