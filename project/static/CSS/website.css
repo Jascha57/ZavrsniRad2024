@@ -21,15 +21,27 @@ nav .active{
     color: white !important;
 }
 
+
 .nav-link{
-    color: var(--secondary-colour) !important;
+    color: var(--secondary-colour);
     border: 1px solid var(--main-colour);
     transition: all 0.5s ease;
 }
 
 .nav-link:hover{
     background-color: var(--main-colour);
-    color: white !important;
+    color: white;
+}
+
+.danger-nav-link{
+    color: var(--secondary-colour);
+    border: 1px solid red;
+    transition: all 0.5s ease;
+}
+
+.danger-nav-link:hover{
+    background-color: red;
+    color: white;
 }
 
 footer{

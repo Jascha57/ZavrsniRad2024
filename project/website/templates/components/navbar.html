@@ -44,6 +44,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Profile: {{ user.first_name }} {{ user.last_name }}</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link danger-nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
         {% else %}
           <li class="nav-item">
             <a class="nav-link {% if request.path == '/login/' %} active {% endif %}" href="{% url 'login' %}">Login</a>
