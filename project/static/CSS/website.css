@@ -1,5 +1,5 @@
 :root{
-    --main-colour: #3044C5;
+    --main-colour: #4bbcd7;
     --secondary-colour: gray;
     --tertiary-colour: #111;
 }
@@ -11,24 +11,28 @@ body{
 }
 
 nav{
+    border-bottom: 2px solid var(--main-colour);
+}
+
+nav .active{
     background-color: var(--main-colour);
+    color: white !important;
 }
 
 .nav-link{
     color: var(--secondary-colour) !important;
-}
-
-.active, .navbar-brand{
-    color: white !important;
+    border: 1px solid var(--main-colour);
+    transition: all 0.5s ease;
 }
 
 .nav-link:hover{
+    background-color: var(--main-colour);
     color: white !important;
 }
 
 footer{
     margin-top: auto;
-    border-top: 2px solid var(--tertiary-colour);
+    border-top: 2px solid var(--main-colour);
 }
 
 footer i{
