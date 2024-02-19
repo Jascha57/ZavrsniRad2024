@@ -40,6 +40,15 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Events</a>
         </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile: {{ user.first_name }} {{ user.last_name }}</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>
