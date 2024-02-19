@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Login{% endblock %}
+
+{% block content %}
+<div class="container my-5 mx-auto">
+    <h2 class="text-center my-3">Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                {{ form.username|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                {{ form.password|as_crispy_field }}
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="call-to-action">Login</button>
+        </div>
+    </form>
+    <div class="text-center mt-3">
+        <p>Don't have an account? Register <a href="#">here</a></p>
+        <p>Forgot your password? Reset it <a href="#">here</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -29,6 +29,8 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'django_ckeditor_5',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     # Custom apps
     'website',
@@ -129,6 +131,10 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Posušje Health admin panel!",
     "site_brand": "Posušje Hospital",
 }
+
+# Crispy forms settings
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # CKEditor settings
 customColorPalette = [

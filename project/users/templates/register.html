@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Register{% endblock %}
+
+{% block content %}
+<div class="container my-5 mx-auto">
+    <h2 class="text-center my-3">Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 mb-3">
+                {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-md-3 mb-3">
+                {{ form.gender|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.password1|as_crispy_field }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.password2|as_crispy_field }}
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="call-to-action">Register</button>
+        </div>
+    </form>
+    <div class="text-center mt-3">
+        <p>Already have an account? Login <a href="">here</a></p>
+    </div>
+</div>
+{% endblock %}

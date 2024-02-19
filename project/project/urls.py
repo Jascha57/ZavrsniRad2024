@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('users.urls')),
     path('', include('website.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
