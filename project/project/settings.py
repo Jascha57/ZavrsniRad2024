@@ -126,7 +126,7 @@ JAZZMIN_SETTINGS = {
     "site_title": "Django Admin",
     "site_header": "Django Admin",
     "site_logo": "../static/SVG/logoBlue.webp",
-    "welcome_sign": "Welcome to Django Admin",
+    "welcome_sign": "Welcome to Posušje Health admin panel!",
     "site_brand": "Posušje Hospital",
 }
 
