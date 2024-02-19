@@ -4,6 +4,8 @@
     --tertiary-colour: #111;
 }
 
+/* GENERAL STYLING STARTS HERE */
+
 body{
     display: flex;
     flex-direction: column;
@@ -45,6 +47,31 @@ footer i{
     color: white;
 }
 
+.call-to-action{
+    background-color: var(--main-colour);
+    color: white;
+    border: 1px solid var(--main-colour);
+    text-decoration: none;
+    font-size: 1.5em;
+    padding: 15px;
+}
+
+/* GENERAL STYLING STARTS HERE */
+
+/* CARD STYLING ON HOME PAGE STARTS HERE */
+
+i{
+    color: var(--main-colour);
+}
+
+.card{
+    border: none;
+}
+
+/* CARD STYLING ON HOME PAGE ENDS HERE */
+
+/* CAROUSEL STYLING STARTS HERE */
+
 .carousel-item {
     height: 50vh;
     max-height: 800px;
@@ -55,3 +82,5 @@ footer i{
     height: 100%;
     object-fit: cover;
 }
+
+/* CAROUSEL STYLING ENDS HERE */

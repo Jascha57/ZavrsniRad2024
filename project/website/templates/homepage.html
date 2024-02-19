@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} - Home{% endblock %}
 {% block content %}
+    <!-- CAROUSEL -->
     <div id="carouselHomePage" class="carousel slide" data-bs-interval="4000" data-bs-ride="carousel" data-bs-touch="true">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselHomePage" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,10 +41,43 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container mx-auto text-center">
-        <h1>Welcome to our website</h1>
-        <p>
-            This is a website for our company. We offer the best services in the world. We are the best and all the rest are not so good.
-        </p>
+    <!-- CALL TO ACTION FOR APPOINTMENTS -->
+    <div class="container mx-auto text-center my-5">
+        <h1 class="my-3">Want to book an appointment?</h1>
+        <a href="#" class="call-to-action">SEE ALL OFFERED SERVICES</a>
     </div>
+    <!-- ABOUT US CARDS -->
+    <div class="container mx-auto my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-notes-medical fa-3x mb-3"></i>
+                        <h3 class="card-title">General Consultations</h3>
+                        <p class="card-text">Schedule appointments with our experienced team of doctors for general consultations and medical advice.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-suitcase-medical fa-3x mb-3"></i>
+                        <h3 class="card-title">Specialized Care</h3>
+                        <p class="card-text">Access specialized medical services tailored to your unique healthcare needs. From cardiology to orthopedics, we've got you covered.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-truck-medical fa-3x mb-3"></i>
+                        <h3 class="card-title">Emergency Services</h3>
+                        <p class="card-text">Our emergency medical team is available 24/7 to provide prompt and efficient care whenever you need it. Your health and safety are our top priorities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
