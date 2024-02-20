@@ -8,7 +8,7 @@ class EventAdmin(admin.ModelAdmin):
 
 class NewsAdmin(admin.ModelAdmin):
     model = News
-    list_display = ('title', 'date', 'description', 'short_description')
+    list_display = ('title', 'date', 'short_description')
     readonly_fields = ('slug',)
 
 admin.site.register(Event, EventAdmin)
