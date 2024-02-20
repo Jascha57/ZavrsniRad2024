@@ -100,4 +100,20 @@ i{
     object-fit: cover;
 }
 
+.carousel-item::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the last value to change the opacity of the mask */
+    z-index: 1;
+}
+
+.carousel-caption {
+    z-index: 2;
+}
+
 /* CAROUSEL STYLING ENDS HERE */
