@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_recaptcha',
 
     # Custom apps
     'website',
@@ -135,6 +136,11 @@ JAZZMIN_SETTINGS = {
 # Crispy forms settings
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# reCAPTCHA settings
+RECAPTCHA_PUBLIC_KEY = env.str('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env.str('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # CKEditor settings
 customColorPalette = [

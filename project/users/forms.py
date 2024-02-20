@@ -1,10 +1,13 @@
 from typing import Any
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 class userRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email', required=True)
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
 
     class Meta:
         model = get_user_model()
@@ -16,3 +19,10 @@ class userRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class userLoginForm(AuthenticationForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
+
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'password']
