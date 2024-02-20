@@ -526,6 +526,9 @@ margin-left: -15px;
     white-space: pre-wrap;
     font-style: normal;
     min-width: 200px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* @ckeditor/ckeditor5-code-block/theme/codeblock.css */
 .ck-content pre code {
@@ -542,4 +545,8 @@ margin-left: -15px;
     .ck-content .page-break::after {
         display: none;
     }
+}
+
+.ck-content {
+    border: 2px solid black;
 }
