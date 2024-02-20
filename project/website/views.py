@@ -14,3 +14,7 @@ def news(request):
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'news.html', {'page_obj': page_obj})
+
+def news_article(request, slug):
+    article = News.objects.get(slug=slug)
+    return render(request, 'news_article.html', {'article': article})

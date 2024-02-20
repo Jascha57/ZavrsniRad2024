@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %} - {{ news.title }}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="ck-content">
+        {{ article.description|safe }}
+    </div>
+</div>
+{% endblock %}
