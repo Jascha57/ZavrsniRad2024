@@ -12,11 +12,11 @@ body{
     min-height: 100vh;
 }
 
-nav{
+.navbar{
     border-bottom: 2px solid var(--main-colour);
 }
 
-nav .active{
+.navbar .active{
     background-color: var(--main-colour);
     color: white !important;
 }
@@ -83,6 +83,11 @@ i{
 
 .card{
     border: none;
+}
+
+.news-card{
+    border: 1px solid var(--main-colour);
+    transition: all 0.5s ease;
 }
 
 /* CARD STYLING ON HOME PAGE ENDS HERE */
