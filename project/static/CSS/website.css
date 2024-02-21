@@ -85,6 +85,11 @@ i{
     border: none;
 }
 
+.img-thumbnail{
+    height: 250px;
+    object-fit: contain;
+}
+
 .news-card{
     border: 1px solid var(--main-colour);
     transition: all 0.5s ease;
