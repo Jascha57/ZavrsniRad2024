@@ -35,6 +35,8 @@ class GroupAdmin(admin.ModelAdmin):
     pass
 
 class GroupProxy(Group):
+    readonly_fields = ('name',)
+
     class Meta:
         proxy = True
         verbose_name = 'Role'
