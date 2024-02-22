@@ -16,32 +16,43 @@ body{
     border-bottom: 2px solid var(--main-colour);
 }
 
-.navbar .active{
-    background-color: var(--main-colour);
-    color: white !important;
+@media (min-width: 992px) {
+    .navbar .active{
+        background-color: var(--main-colour);
+        color: white !important;
+    }
+
+    .nav-link {
+        color: var(--secondary-colour);
+        border: 1px solid var(--main-colour);
+        transition: all 0.5s ease;
+    }
+
+    .nav-link:hover {
+        background-color: var(--main-colour);
+        color: white;
+    }
+
+    .danger-nav-link {
+        color: var(--secondary-colour);
+        border: 1px solid crimson;
+        transition: all 0.5s ease;
+    }
+
+    .danger-nav-link:hover {
+        background-color: crimson;
+        color: white;
+    }
 }
 
+@media (max-width: 992px) {
+    .navbar .active{
+        color: var(--main-colour) !important;
+    }
 
-.nav-link{
-    color: var(--secondary-colour);
-    border: 1px solid var(--main-colour);
-    transition: all 0.5s ease;
-}
-
-.nav-link:hover{
-    background-color: var(--main-colour);
-    color: white;
-}
-
-.danger-nav-link{
-    color: var(--secondary-colour);
-    border: 1px solid red;
-    transition: all 0.5s ease;
-}
-
-.danger-nav-link:hover{
-    background-color: red;
-    color: white;
+    .danger-nav-link {
+        color: crimson;
+    }
 }
 
 footer{
