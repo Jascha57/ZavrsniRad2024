@@ -10,10 +10,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link {% if request.path == '/' %} active {% endif %}" aria-current="page" href="{% url 'homepage' %}">Home</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item my-auto dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Services
           </a>
@@ -28,27 +28,30 @@
             <li><a class="dropdown-item" href="#">All Services</a></li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link {% if request.path == '/news/' %} active {% endif %}" href="{% url 'news' %}">News/Blogs</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link" href="#">Events</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link" href="#">Our Staff</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
           <a class="nav-link" href="#">About Us</a>
         </li>
         {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile: {{ user.first_name }} {{ user.last_name }}</a>
+          <li class="nav-item my-auto">
+            <a class="nav-link" href="#">
+              <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+              Profile: {{ user.first_name }} {{ user.last_name }}
+            </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-auto">
             <a class="nav-link danger-nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
         {% else %}
-          <li class="nav-item">
+          <li class="nav-item my-auto">
             <a class="nav-link {% if request.path == '/login/' %} active {% endif %}" href="{% url 'login' %}">Login</a>
           </li>
         {% endif %}
