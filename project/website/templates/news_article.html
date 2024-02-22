@@ -2,9 +2,14 @@
 {% block title %} - {{ news.title }}{% endblock %}
 
 {% block content %}
-<div class="container text-center">
-    <h1>{{ article.title }}</h1>
-    <div class="ck-content my-5">
+<div class="container">
+    <h1 class="my-3">{{ article.title }}</h1>
+    <div>
+        <h2>{{ article.short_description }}</h2>
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+        <small class="text-muted">{{ article.date }} by {{ article.author.first_name }} {{ article.author.last_name }}</small>
+    </div>
+    <div class="ck-content my-5 text-center">
         {{ article.description|safe }}
     </div>
 </div>
