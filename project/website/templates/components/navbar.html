@@ -18,13 +18,9 @@
             Services
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Doctor Appointment</a></li>
-            <li><a class="dropdown-item" href="#">Diagnostic Tests</a></li>
-            <li><a class="dropdown-item" href="#">Health Checkup</a></li>
-            <li><a class="dropdown-item" href="#">Rehabilitations</a></li>
-            <li><a class="dropdown-item" href="#">Dental Checkup</a></li>
-            <li><a class="dropdown-item" href="#">Blood Drawing</a></li>
-            <li><hr class="dropdown-divider" /></li>
+            {% for service in request.services %}
+              <li><a class="dropdown-item" href="#">{{ service.title }}</a></li>
+            {% endfor %}
             <li><a class="dropdown-item" href="#">All Services</a></li>
           </ul>
         </li>

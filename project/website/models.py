@@ -63,11 +63,16 @@ class Services(models.Model):
 
         if is_new:
             Group.objects.create(name=(self.title + ' - Service'))
+            self.slug = slugify(self.title)
         elif 'title' in self.get_dirty_fields():
             previous_title = Services.objects.get(pk=self.pk).title
             group = Group.objects.get(name=(previous_title + ' - Service'))
             group.name = self.title + ' - Service'
+            self.slug = slugify(self.title)
             group.save()
+
+        if not self.slug:
+            self.slug = slugify(self.title)
 
         super().save(*args, **kwargs)
     

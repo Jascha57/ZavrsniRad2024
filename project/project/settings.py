@@ -48,6 +48,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Third-party middleware
+
+    # Custom middleware
+    'website.middleware.ServicesMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
