@@ -43,7 +43,7 @@
     </div>
     <!-- CALL TO ACTION FOR APPOINTMENTS -->
     <div class="container mx-auto text-center my-5">
-        <h1 class="my-3">Want to book an appointment?</h1>
+        <h1 class="my-5">Want to book an appointment?</h1>
         <a href="#" class="call-to-action">SEE ALL OFFERED SERVICES</a>
     </div>
     <!-- ABOUT US CARDS -->
@@ -81,6 +81,26 @@
     <!-- LATEST NEWS (DYNAMIC) -->
     <div class="container">
         <h1 class="text-center">LATEST NEWS</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for news in latest_news %}
+            <div class="col">
+                <div class="card h-100 news-card">
+                    <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.short_description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ news.date }} by {{ news.author }}</small>
+                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center my-5">
+            <a href="{% url 'news' %}" class="call-to-action">SEE ALL NEWS</a>
+        </div>
     </div>
     <!-- LATEST EVENTS (DYNAMIC) -->
     <div class="container">

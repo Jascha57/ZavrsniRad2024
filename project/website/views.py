@@ -4,7 +4,8 @@ from django.core.paginator import Paginator
 from .models import *
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    latest_news = News.objects.all().order_by('-date')[:3]
+    return render(request, 'homepage.html', {'latest_news': latest_news})
 
 def news(request):
     news = News.objects.all().order_by('-date')
