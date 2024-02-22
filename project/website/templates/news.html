@@ -5,22 +5,31 @@
 {% block content %}
 <div class="container my-5">
     <h1 class="text-center">News</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for news in page_obj %}
-        <div class="col">
-            <div class="card h-100 news-card">
-                <div class="card-body">
-                    <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
-                    <h5 class="card-title">{{ news.title }}</h5>
-                    <p class="card-text">{{ news.short_description }}</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">{{ news.date }} by {{ news.author }}</small>
-                    <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
+    <form method="GET" class="my-5">
+        <input type="text" name="search" placeholder="Search for title or description." value="{{ request.GET.search }}" class="form-control">
+    </form>
+    {% if not page_obj %}
+        <div class="mx-auto my-5">
+            <h1 class="text-center">No results.</h1>
+        </div>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for news in page_obj %}
+            <div class="col">
+                <div class="card h-100 news-card">
+                    <div class="card-body">
+                        <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.short_description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ news.date }} by {{ news.author.first_name }} {{ news.author.last_name }}</small>
+                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 
     <nav aria-label="Page navigation">
