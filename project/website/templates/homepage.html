@@ -91,7 +91,7 @@
                         <p class="card-text">{{ news.short_description }}</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">{{ news.date }} by {{ news.author }}</small>
+                        <small class="text-muted">{{ news.date }} by {{ news.author.first_name }} {{ news.author.last_name }}</small>
                         <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
