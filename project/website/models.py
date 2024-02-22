@@ -62,11 +62,11 @@ class Services(models.Model):
         is_new = not self.pk
 
         if is_new:
-            Group.objects.create(name=self.title)
+            Group.objects.create(name=(self.title + ' - Service'))
         elif 'title' in self.get_dirty_fields():
             previous_title = Services.objects.get(pk=self.pk).title
-            group = Group.objects.get(name=previous_title)
-            group.name = self.title
+            group = Group.objects.get(name=(previous_title + ' - Service'))
+            group.name = self.title + ' - Service'
             group.save()
 
         super().save(*args, **kwargs)

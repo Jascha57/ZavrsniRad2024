@@ -32,11 +32,12 @@ class CustomUserAdmin(admin.ModelAdmin):
         return super().formfield_for_dbfield(db_field, **kwargs)
 
 class GroupAdmin(admin.ModelAdmin):
-    pass
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('name',)
+        return self.readonly_fields
 
 class GroupProxy(Group):
-    readonly_fields = ('name',)
-
     class Meta:
         proxy = True
         verbose_name = 'Role'
