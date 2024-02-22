@@ -23,8 +23,9 @@
                         <p class="card-text">{{ news.short_description }}</p>
                     </div>
                     <div class="card-footer">
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
                         <small class="text-muted">{{ news.date }} by {{ news.author.first_name }} {{ news.author.last_name }}</small>
-                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
+                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary my-2">Read More</a>
                     </div>
                 </div>
             </div>
