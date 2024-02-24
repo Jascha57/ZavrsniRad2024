@@ -9,8 +9,10 @@ from users.models import CustomUser
 
 class Event(models.Model):
     slug = models.SlugField(unique=True, null=False, blank=True, editable=False)
+    thumbnail = models.ImageField(upload_to='events/', null=False, blank=False, default='events/default.png')
     title = models.CharField(max_length=100, default='Title', blank=False, null=False, unique=True)
     description = CKEditor5Field('Text', config_name='extends')
+    location = models.CharField(max_length=100, default='Location', blank=False, null=False)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -28,3 +28,21 @@ def news(request):
 def news_article(request, slug):
     article = News.objects.get(slug=slug)
     return render(request, 'news_article.html', {'article': article})
+
+def events(request):
+    search_query = request.GET.get('search', '')
+    events = Event.objects.filter(
+        Q(title__icontains=search_query) |
+        Q(location__icontains=search_query) |
+        Q(date__icontains=search_query)
+    ).order_by('-date')
+    paginator = Paginator(events, 9)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'events.html', {'page_obj': page_obj})
+
+def event(request, slug):
+    event = Event.objects.get(slug=slug)
+    return render(request, 'event.html', {'event': event})

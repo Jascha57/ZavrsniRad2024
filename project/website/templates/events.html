@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} - News{% endblock %}
+{% block title %} - Events{% endblock %}
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="text-center">News</h1>
+    <h1 class="text-center">Events</h1>
     <form method="GET" class="my-5">
         <input type="text" name="search" placeholder="Search for title or description." value="{{ request.GET.search }}" class="form-control">
     </form>
@@ -14,26 +14,25 @@
         </div>
     {% else %}
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for news in page_obj %}
+            {% for event in page_obj %}
             <div class="col">
                 <div class="card h-100 news-card">
                     <div class="card-body">
-                        <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
-                        <h5 class="card-title">{{ news.title }}</h5>
-                        <p class="card-text">{{ news.short_description }}</p>
+                        <img src="{{ event.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ event.title }}">
+                        <h5 class="card-title">{{ event.title }}</h5>
                     </div>
                     <div class="card-footer">
-                        <div class="d-flex justify-content-between">
-                            <div>
+                        <div class="row">
+                            <div class="col-12">
                                 <i class="fas fa-calendar-alt"></i>
-                                <small class="text-muted">{{ news.date }}</small>
+                                <small class="text-muted">{{ event.date }}</small>
                             </div>
-                            <div>
-                                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
-                                <small class="text-muted">{{ news.author.first_name }} {{ news.author.last_name }}</small>
+                            <div class="col-12">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <small class="text-muted">{{ event.location }}</small>
                             </div>
                         </div>
-                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary my-2">Read More</a>
+                        <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
                     </div>
                 </div>
             </div>

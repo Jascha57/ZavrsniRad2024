@@ -28,7 +28,7 @@
           <a class="nav-link {% if request.path == '/news/' %} active {% endif %}" href="{% url 'news' %}">News/Blogs</a>
         </li>
         <li class="nav-item my-auto">
-          <a class="nav-link" href="#">Events</a>
+          <a class="nav-link {% if request.path == '/events/' %} active {% endif %}" href="{% url 'events' %}">Events</a>
         </li>
         <li class="nav-item my-auto">
           <a class="nav-link" href="#">Our Staff</a>
