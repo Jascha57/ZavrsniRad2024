@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # Custom apps
     'website',
     'users',
+    'reservations',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
