@@ -80,30 +80,79 @@
     </div>
     <!-- LATEST NEWS (DYNAMIC) -->
     <div class="container">
-        <h1 class="text-center">LATEST NEWS</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for news in latest_news %}
-            <div class="col">
-                <div class="card h-100 news-card">
-                    <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ news.title }}</h5>
-                        <p class="card-text">{{ news.short_description }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">{{ news.date }} by {{ news.author.first_name }} {{ news.author.last_name }}</small>
-                        <a href="{% url 'news_article' news.slug %}" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
+        {% if not latest_news %}
+            <div class="mx-auto my-5">
+                <h1 class="text-center">No news available.</h1>
             </div>
-            {% endfor %}
-        </div>
-        <div class="text-center my-5">
-            <a href="{% url 'news' %}" class="call-to-action">SEE ALL NEWS</a>
-        </div>
+        {% else %}
+            <h1 class="text-center">LATEST NEWS</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for news in latest_news %}
+                    <div class="col">
+                        <div class="card h-100 news-card">
+                            <img src="{{ news.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ news.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ news.title }}</h5>
+                                <p class="card-text">{{ news.short_description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <small class="text-muted">{{ news.date }}</small>
+                                    </div>
+                                    <div>
+                                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+                                        <small class="text-muted">{{ news.author.first_name }} {{ news.author.last_name }}</small>
+                                    </div>
+                                </div>
+                                <a href="{% url 'news_article' news.slug %}" class="btn btn-primary my-2">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center my-5">
+                <a href="{% url 'news' %}" class="call-to-action">SEE ALL NEWS</a>
+            </div>
+        {% endif %}
     </div>
     <!-- LATEST EVENTS (DYNAMIC) -->
     <div class="container">
-        <h1 class="text-center">LATEST EVENTS</h1>
+        {% if not latest_events %}
+            <div class="mx-auto my-5">
+                <h1 class="text-center">No events available.</h1>
+            </div>
+        {% else %}
+            <h1 class="text-center">LATEST EVENTS</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for event in latest_events %}
+                    <div class="col">
+                        <div class="card h-100 news-card">
+                            <img src="{{ event.thumbnail.url }}" class="card-img-top img-thumbnail" alt="{{ event.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ event.title }}</h5>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <small class="text-muted">{{ event.date }}</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <small class="text-muted">{{ event.location }}</small>
+                                    </div>
+                                </div>
+                                <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center my-5">
+                <a href="{% url 'events' %}" class="call-to-action">SEE ALL EVENTS</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
