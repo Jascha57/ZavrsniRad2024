@@ -21,7 +21,7 @@
             {% for service in request.services %}
               <li><a class="dropdown-item" href="#">{{ service.title }}</a></li>
             {% endfor %}
-            <li><a class="dropdown-item" href="#">All Services</a></li>
+            <li><a class="dropdown-item" href="{% url 'services' %}">All Services</a></li>
           </ul>
         </li>
         <li class="nav-item my-auto">
