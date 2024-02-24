@@ -3,5 +3,66 @@
 {% block title %} - Reservations{% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Reservations</h1>
+    <div class="container mx-auto text-center">
+        <h1 class="text-center">Reservations</h1>
+        <div class="d-flex flex-column flex-lg-row justify-content-between">
+            <div id="week-picker"></div>
+            <table class="table table-bordered mt-3" id="week-table">
+                <thead>
+                    <tr>
+                        <th id="monday">Monday</th>
+                        <th id="tuesday">Tuesday</th>
+                        <th id="wednesday">Wednesday</th>
+                        <th id="thursday">Thursday</th>
+                        <th id="friday">Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function() {
+            var startDate;
+            var endDate;
+
+            var selectCurrentWeek = function() {
+                window.setTimeout(function () {
+                    $('#week-picker').find('.ui-datepicker-current-day a').addClass('ui-state-active')
+                }, 1);
+            }
+
+            $('#week-picker').datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                firstDay: 1,
+                onSelect: function(dateText, inst) { 
+                    var date = $(this).datepicker('getDate');
+                    startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 1);
+                    endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
+                    for (var i = 0; i < 5; i++) {
+                        var day = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
+                        $('#' + ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'][i]).text(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][i] + ' ' + day.getDate());
+                    }
+                    selectCurrentWeek();
+                },
+                beforeShowDay: function(date) {
+                    var cssClass = '';
+                    if(date >= startDate && date <= endDate)
+                        cssClass = 'ui-datepicker-current-day';
+                    return [true, cssClass];
+                },
+                onChangeMonthYear: function(year, month, inst) {
+                    selectCurrentWeek();
+                }
+            });
+
+            $('.ui-datepicker-calendar tr').on('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });
+            $('.ui-datepicker-calendar tr').on('mouseleave', function() { $(this).find('td a').removeClass('ui-state-hover'); });
+        });
+    </script>
 {% endblock %}
