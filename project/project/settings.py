@@ -136,6 +136,13 @@ JAZZMIN_SETTINGS = {
     "site_logo": "../static/SVG/logoBlue.webp",
     "welcome_sign": "Welcome to Posušje Health admin panel!",
     "site_brand": "Posušje Hospital",
+    "icons": {
+        "website.news": "fas fa-newspaper",
+        "website.event": "fas fa-calendar-alt",
+        "website.services": "fas fa-hands-helping",
+        "users.customuser": "fas fa-user",
+        "users.groupproxy": "fas fa-users-cog",
+    },
 }
 
 # Crispy forms settings
