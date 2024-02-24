@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.urls import reverse
 
 from .models import *
 
@@ -7,10 +8,11 @@ class AdminAccessMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path.startswith('/admin') and request.user.is_authenticated:
+        admin_url = reverse('admin:index')
+        if request.path.startswith(admin_url) and request.user.is_authenticated:
             if not request.user.is_superuser and not request.user.has_admin_access:
                 raise Http404("Page not found")
-        elif request.path.startswith('/admin') and not request.user.is_authenticated:
+        elif request.path.startswith(admin_url) and not request.user.is_authenticated:
             raise Http404("Page not found")
         response = self.get_response(request)
         return response

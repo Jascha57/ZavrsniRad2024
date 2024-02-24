@@ -13,7 +13,7 @@ def register(request):
         form = userRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            group, created = Group.objects.get_or_create(name='customer')
+            group, created = Group.objects.get_or_create(name='Customer')
             user.groups.add(group)
             login(request, user)
             messages.success(request, "You have successfully registered.")
