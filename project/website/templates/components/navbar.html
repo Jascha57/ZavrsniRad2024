@@ -19,7 +19,7 @@
           </a>
           <ul class="dropdown-menu">
             {% for service in request.services %}
-              <li><a class="dropdown-item" href="#">{{ service.title }}</a></li>
+              <li><a class="dropdown-item" href="{% url 'services' %}#{{ service.title }}">{{ service.title }}</a></li>
             {% endfor %}
             <li><a class="dropdown-item" href="{% url 'services' %}">All Services</a></li>
           </ul>
