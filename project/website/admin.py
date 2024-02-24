@@ -13,7 +13,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 class ServicesAdmin(admin.ModelAdmin):
     model = Services
-    list_display = ('title', 'description')
+    list_display = ('title',)
     readonly_fields = ('slug',)
 
 admin.site.register(Event, EventAdmin)

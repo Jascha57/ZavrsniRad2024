@@ -53,6 +53,7 @@ MIDDLEWARE = [
     # Third-party middleware
 
     # Custom middleware
+    'website.middleware.AdminAccessMiddleware',
     'website.middleware.ServicesMiddleware',
 ]
 
