@@ -5,5 +5,44 @@
 {% block content %}
     <div class="container my-5">
         <h1 class="text-center">Services</h1>
+        {% if not services %}
+            <div class="mx-auto my-5">
+                <h1 class="text-center">No services available.</h1>
+            </div>
+        {% else %}
+            {% for service in services %}
+                <div class="card my-3 service-card" id="{{ service.title }}">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">{{ service.title }}</h2>
+                        <div class="row">
+                            <div class="col-md-6 service-description my-2">
+                                <h3 class="mr-3 text-center">Description</h3>
+                                <p class="card-text">{{ service.description }}</p>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                {% if service.doctors %}
+                                    <div class="my-3">
+                                        <h3 class="mr-3 text-center">Available doctors</h3>
+                                        {% for doctor in service.doctors %}
+                                            <div class="d-flex align-items-center justify-content-center my-3">
+                                                <img src="{{ doctor.profile_picture.url }}" class="mr-3 profile-picture" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
+                                                <h5 class="mt-0 mb-0">{{ doctor.first_name }} {{ doctor.last_name }}</h5>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="my-3">
+                                        <h3 class="mr-3 text-center">No doctors available for this service.</h3>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

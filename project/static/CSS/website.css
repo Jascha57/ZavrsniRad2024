@@ -114,6 +114,25 @@ i{
     transition: all 0.5s ease;
 }
 
+.service-card{
+    border: 1px solid var(--main-colour);
+}
+
+.service-card h2{
+    border-bottom: 1px solid var(--main-colour);
+}
+
+.service-description{
+    border-right: 1px solid var(--main-colour);
+}
+
+@media screen and (max-width: 992px) {
+    .service-description{
+        border-right: none;
+        border-bottom: 1px solid var(--main-colour);
+    }
+}
+
 /* CARD STYLING ON HOME PAGE ENDS HERE */
 
 /* CAROUSEL STYLING STARTS HERE */
