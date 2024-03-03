@@ -22,6 +22,9 @@
             </table>
         </div>
     </div>
+    <div class="container mx-auto text-center">
+        <h2 id="selected_date"></h2>
+    </div>
 {% endblock %}
 
 {% block scripts %}
@@ -49,6 +52,19 @@
                         $('#' + ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'][i]).text(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][i] + ' ' + day.getDate());
                     }
                     selectCurrentWeek();
+
+                    $.ajax({
+                        url: "{% url 'selected_date' %}",
+                        method: 'POST',
+                        data: {
+                            start_date: $.datepicker.formatDate('yy-mm-dd', startDate),
+                            end_date: $.datepicker.formatDate('yy-mm-dd', endDate),
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                        },
+                        success: function(response) {
+                            $('#selected_date').text(response.status);
+                        }
+                    });
                 },
                 beforeShowDay: function(date) {
                     var cssClass = '';
