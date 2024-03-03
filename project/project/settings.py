@@ -107,6 +107,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Sarajevo'
 
+USE_L10N = False
+TIME_FORMAT = 'H:i'  # 24-hour format
+
 USE_I18N = True
 
 USE_TZ = True
