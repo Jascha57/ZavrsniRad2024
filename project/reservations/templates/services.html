@@ -11,32 +11,30 @@
             </div>
         {% else %}
             {% for service in services %}
-                <div class="card my-3 service-card" id="{{ service.title }}">
+                <div class="card my-5 service-card" id="{{ service.title }}">
                     <div class="card-body">
-                        <h2 class="card-title text-center">{{ service.title }}</h2>
-                        <div class="row">
-                            <div class="col-md-6 service-description my-2">
-                                <h3 class="mr-3 text-center">Description</h3>
-                                <p class="card-text">{{ service.description }}</p>
-                            </div>
-                            <div class="col-md-6 my-2">
-                                {% if service.doctors %}
-                                    <div class="my-3">
-                                        <h3 class="mr-3 text-center">Available doctors</h3>
-                                        {% for doctor in service.doctors %}
-                                            <div class="d-flex align-items-center justify-content-center my-3">
-                                                <img src="{{ doctor.profile_picture.url }}" class="mr-3 profile-picture" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
-                                                <h5 class="mt-0 mb-0">{{ doctor.first_name }} {{ doctor.last_name }}</h5>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    <div class="my-3">
-                                        <h3 class="mr-3 text-center">No doctors available for this service.</h3>
-                                    </div>
-                                {% endif %}
-                            </div>
+                        <h2 class="card-title text-center my-3">{{ service.title }}</h2>
+                        <div class="service-description my-5">
+                            <h3 class="mr-3 text-center">Description</h3>
+                            <p class="card-text text-center">{{ service.description }}</p>
                         </div>
+                        {% if service.doctors %}
+                            <div class="my-3">
+                                <h3 class="mr-3 text-center">Available doctors</h3>
+                                <div class="row justify-content-center">
+                                    {% for doctor in service.doctors %}
+                                        <div class="col-6 col-md-2 d-flex align-items-center justify-content-center my-3">
+                                            <img src="{{ doctor.profile_picture.url }}" class="mr-3 profile-picture" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
+                                            <h5 class="mt-0 mb-0">{{ doctor.last_name|slice:":1" }}. {{ doctor.first_name }}</h5>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="my-3">
+                                <h3 class="mr-3 text-center">No doctors available for this service.</h3>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="card-footer text-center">
                         <a href="#" class="btn btn-primary">Book Now</a>
