@@ -86,3 +86,15 @@ class Services(models.Model):
         original = model_to_dict(self.__class__.objects.get(pk=self.pk))
         current = model_to_dict(self)
         return {k: v for k, v in current.items() if original.get(k) != v}
+    
+class Schedule(models.Model):
+    service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='schedules')
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    class Meta:
+        verbose_name = 'Schedule'
+        verbose_name_plural = 'Schedules'
+
+    def __str__(self):
+        return f'{self.service.name}: {self.start_time} - {self.end_time}'

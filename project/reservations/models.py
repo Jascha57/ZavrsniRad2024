@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import Group
-from django.db.models import Q
 
 from users.models import CustomUser
 from website.models import Services
@@ -20,11 +18,3 @@ class Reservation(models.Model):
 
     def __str__(self):
         return self.user.username
-    
-class Schedule(models.Model):
-    service = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='schedules')
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-
-    def __str__(self):
-        return f'{self.service.name}: {self.start_time} - {self.end_time}'

@@ -19,3 +19,4 @@ class ServicesAdmin(admin.ModelAdmin):
 admin.site.register(Event, EventAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Services, ServicesAdmin)
+admin.site.register(Schedule)
