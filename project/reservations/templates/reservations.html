@@ -18,6 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for time_slot in time_slots %}
+                        <tr>
+                            <td><button class="btn btn-primary appointment-button" data-time-slot="{{ time_slot }}">Available: {{ time_slot }} - {{ time_slot }}</button></td>
+                            <td><button class="btn btn-primary appointment-button" data-time-slot="{{ time_slot }}">Available: {{ time_slot }} - {{ time_slot|add:30 }}</button></td>
+                            <td><button class="btn btn-primary appointment-button" data-time-slot="{{ time_slot }}">Available: {{ time_slot }} - {{ time_slot|add:30 }}</button></td>
+                            <td><button class="btn btn-primary appointment-button" data-time-slot="{{ time_slot }}">Available: {{ time_slot }} - {{ time_slot|add:30 }}</button></td>
+                            <td><button class="btn btn-primary appointment-button" data-time-slot="{{ time_slot }}">Available: {{ time_slot }} - {{ time_slot|add:30 }}</button></td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
