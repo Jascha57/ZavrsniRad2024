@@ -1,59 +1,65 @@
 {% extends 'base.html' %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
+{% endblock %}
+
 {% block title %} - Reservations{% endblock %}
 
 {% block content %}
     <div class="container mx-auto text-center">
         <h1 class="text-center">Reservations</h1>
         <div class="d-flex flex-column align-items-start">
-            <div id="week-picker"></div>
-            <table class="table table-bordered mt-3" id="week-table">
-                <thead>
-                    <tr>
-                        <th id="monday">Monday</th>
-                        <th id="tuesday">Tuesday</th>
-                        <th id="wednesday">Wednesday</th>
-                        <th id="thursday">Thursday</th>
-                        <th id="friday">Friday</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for schedule in examination_schedules %}
+            <div id="week-picker" class="mx-auto"></div>
+            <div class="mx-auto">
+                <table id="week-table" class="cell-border" cellspacing="0" width="100%">
+                    <thead>
                         <tr>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-                                    Available
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-                                    Available
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-                                    Available
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-                                    Available
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">
-                                    {{ schedule.start_time }} - {{ schedule.end_time }}<br>
-                                    Available
-                                </button>
-                            </td>
+                            <th data-priority="1">Monday</th>
+                            <th data-priority="2">Tuesday</th>
+                            <th data-priority="3">Wednesday</th>
+                            <th data-priority="4">Thursday</th>
+                            <th data-priority="5">Friday</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for schedule in examination_schedules %}
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        {{ schedule.start_time }} - {{ schedule.end_time }}<br>
+                                        Available
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        {{ schedule.start_time }} - {{ schedule.end_time }}<br>
+                                        Available
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        {{ schedule.start_time }} - {{ schedule.end_time }}<br>
+                                        Available
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        {{ schedule.start_time }} - {{ schedule.end_time }}<br>
+                                        Available
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        {{ schedule.start_time }} - {{ schedule.end_time }}<br>
+                                        Available
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="container mx-auto text-center">
@@ -113,6 +119,14 @@
 
             $('.ui-datepicker-calendar tr').on('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });
             $('.ui-datepicker-calendar tr').on('mouseleave', function() { $(this).find('td a').removeClass('ui-state-hover'); });
+        });
+    </script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#week-table').DataTable({
+                responsive: true
+            });
         });
     </script>
 {% endblock %}

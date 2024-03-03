@@ -30,6 +30,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
+
+    <!-- EXTRA CSS -->
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     {% include 'components/navbar.html' %}
