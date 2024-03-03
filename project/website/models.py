@@ -52,6 +52,7 @@ class Services(models.Model):
     slug = models.SlugField(unique=True, null=False, blank=True, editable=False)
     title = models.CharField(max_length=100, default='Title', blank=False, null=False, unique=True)
     description = models.TextField(max_length=1000, default='Description', blank=False, null=False)
+    duration = models.IntegerField(default=30, blank=False, null=False, help_text='Duration in minutes')
 
     class Meta:
         verbose_name = 'Service'
