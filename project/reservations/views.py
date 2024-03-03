@@ -14,16 +14,10 @@ def services(request):
     return render(request, 'services.html', {'services': services})
 
 def reservations(request):
-    start_time = time(hour=7)
-    end_time = time(hour=21)
-    time_slots = []
+    examination_service = Services.objects.get(title="Examination")
+    examination_schedules = examination_service.schedules.all()
 
-    current_time = start_time
-    while current_time <= end_time:
-        time_slots.append(current_time)
-        current_time = (datetime.combine(date.min, current_time) + timedelta(minutes=30)).time()
-
-    return render(request, 'reservations.html', {'time_slots': time_slots})
+    return render(request, 'reservations.html', {'examination_schedules': examination_schedules})
 
 def selected_date(request):
     start_date = request.POST.get('start_date')
