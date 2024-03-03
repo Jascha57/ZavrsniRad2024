@@ -6,10 +6,18 @@
 
 /* GENERAL STYLING STARTS HERE */
 
+.oswald-700 {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
 body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Osward', sans-serif;
 }
 
 .navbar{
