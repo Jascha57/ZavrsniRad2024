@@ -67,7 +67,7 @@
                 <tr>
                     <td class="text-center">Days</td>
                     {% for schedule in examination_schedules %}
-                        <td class="text-center">{{ schedule.start_time }}</td>
+                        <td></td>
                     {% endfor %}
                 </tr>
             </thead>
@@ -77,6 +77,7 @@
                     {% for schedule in examination_schedules %}
                         <td>
                             <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
                                 Available
                             </button>
                         </td>
@@ -87,6 +88,7 @@
                     {% for schedule in examination_schedules %}
                         <td>
                             <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
                                 Available
                             </button>
                         </td>
@@ -97,6 +99,7 @@
                     {% for schedule in examination_schedules %}
                         <td>
                             <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
                                 Available
                             </button>
                         </td>
@@ -107,6 +110,7 @@
                     {% for schedule in examination_schedules %}
                         <td>
                             <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
                                 Available
                             </button>
                         </td>
@@ -117,6 +121,7 @@
                     {% for schedule in examination_schedules %}
                         <td>
                             <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
                                 Available
                             </button>
                         </td>

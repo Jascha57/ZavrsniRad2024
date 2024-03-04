@@ -163,3 +163,11 @@ i{
 }
 
 /* CAROUSEL STYLING ENDS HERE */
+
+/* DATATABLES STYLING STARTS HERE */
+
+.dtr-details .dtr-title{
+    display: none !important;
+}
+
+/* DATATABLES STYLING ENDS HERE */
