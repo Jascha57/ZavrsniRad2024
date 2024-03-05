@@ -27,13 +27,13 @@
 
     <!-- JQUERS UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'CSS/website.css' %}" type="text/css">
-
+    
     <!-- EXTRA CSS -->
     {% block extra_css %}
     {% endblock %}
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'CSS/website.css' %}" type="text/css">
 </head>
 <body>
     {% include 'components/navbar.html' %}

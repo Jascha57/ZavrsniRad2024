@@ -130,6 +130,76 @@
             </tbody>
         </table>
     </div>
+    <div class="container mx-auto text-center my-5">
+        <h1 class="mx-auto my-5">EXAMPLE 3</h1>
+        <table id="row-based-scrollable" class="table table-striped nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <td class="text-center">Days</td>
+                    {% for schedule in examination_schedules %}
+                        <td></td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">Monday</td>
+                    {% for schedule in examination_schedules %}
+                        <td>
+                            <button type="button" class="btn btn-danger">
+                                {{ schedule.start_time }}<br>
+                                Reserved
+                            </button>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-center">Tuesday</td>
+                    {% for schedule in examination_schedules %}
+                        <td>
+                            <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
+                                Available
+                            </button>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-center">Wednesday</td>
+                    {% for schedule in examination_schedules %}
+                        <td>
+                            <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
+                                Available
+                            </button>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-center">Thursday</td>
+                    {% for schedule in examination_schedules %}
+                        <td>
+                            <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
+                                Available
+                            </button>
+                        </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="text-center">Friday</td>
+                    {% for schedule in examination_schedules %}
+                        <td>
+                            <button type="button" class="btn btn-primary">
+                                {{ schedule.start_time }}<br>
+                                Available
+                            </button>
+                        </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 {% block scripts %}
@@ -201,6 +271,10 @@
             });
             $('#row-based').DataTable({
                 responsive: true,
+                ordering: false,
+            });
+            $('#row-based-scrollable').DataTable({
+                scrollX: true,
                 ordering: false,
             });
         });
