@@ -165,7 +165,7 @@ i{
 
 /* DATATABLES STYLING STARTS HERE */
 
-.dtr-details .dtr-title{
+#row-based .dtr-details .dtr-title{
     display: none !important;
 }
 
