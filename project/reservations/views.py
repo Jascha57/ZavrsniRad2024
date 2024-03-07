@@ -33,8 +33,6 @@ def reservations(request):
         if doctor not in doctors:
             messages.error(request, 'The selected doctor does not provide the selected service.')
             return render(request, 'reservations.html', {'form': form})
-        
-        print(request.POST)
 
         form.fields['doctor'].choices = [(doctor_id, doctor_id)]
         form.fields['service'].choices = [(service_id, service_id)]
@@ -56,7 +54,7 @@ def reservations(request):
             messages.success(request, 'Your reservation has been successfully created.')
             return redirect('homepage')
         else:
-            print(form.errors)
+            messages.error(request, 'An error occurred while creating the reservation.')
 
     form = ReservationForm()
     return render(request, 'reservations.html', {'form': form})
