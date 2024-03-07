@@ -17,7 +17,7 @@ def services(request):
         service.doctors = CustomUser.objects.filter(groups__name=group_name)
     return render(request, 'services.html', {'services': services})
 
-def reservations(request):
+def reservations(request, service_id=None):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
 
@@ -56,7 +56,10 @@ def reservations(request):
         else:
             messages.error(request, 'An error occurred while creating the reservation.')
 
-    form = ReservationForm()
+    if service_id:
+        form = ReservationForm(initial={'service': service_id})
+    else:
+        form = ReservationForm()
     return render(request, 'reservations.html', {'form': form})
 
 def get_doctors(request):

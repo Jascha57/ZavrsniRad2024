@@ -37,7 +37,7 @@
                         {% endif %}
                     </div>
                     <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Book Now</a>
+                        <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
             {% endfor %}
