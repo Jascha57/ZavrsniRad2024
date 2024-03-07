@@ -1,10 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.http import JsonResponse
 from datetime import time, timedelta, date, datetime
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
-from website.models import Services
+from website.models import *
 from users.models import CustomUser
+from .models import *
+from .forms import ReservationForm
 
 def services(request):
     services = Services.objects.all()
@@ -14,15 +18,87 @@ def services(request):
     return render(request, 'services.html', {'services': services})
 
 def reservations(request):
-    examination_service = Services.objects.get(title="Examination")
-    examination_schedules = examination_service.schedules.all()
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
 
-    return render(request, 'reservations.html', {'examination_schedules': examination_schedules})
+        service_id = request.POST.get('service')
+        service = get_object_or_404(Services, id=service_id)
 
-def selected_date(request):
-    start_date = request.POST.get('start_date')
-    end_date = request.POST.get('end_date')
-    if start_date and end_date:
-        return JsonResponse({'status': 'success'})
-    else:
-        return JsonResponse({'status': 'error'})
+        doctor_id = request.POST.get('doctor')
+        doctor = get_object_or_404(CustomUser, id=doctor_id)
+
+        group_name = service.title + ' - Service'
+        doctors = CustomUser.objects.filter(groups__name=group_name)
+
+        if doctor not in doctors:
+            messages.error(request, 'The selected doctor does not provide the selected service.')
+            return render(request, 'reservations.html', {'form': form})
+        
+        print(request.POST)
+
+        form.fields['doctor'].choices = [(doctor_id, doctor_id)]
+        form.fields['service'].choices = [(service_id, service_id)]
+
+        if form.is_valid():
+            doctor = form.cleaned_data['doctor']
+            service = form.cleaned_data['service']
+            date = form.cleaned_data['date']
+            start_time = form.cleaned_data['start_time']
+            description = form.cleaned_data['description']
+
+            # Get the end time of the reservation from schedule with start time and service
+            end_time = Schedule.objects.get(service=service, start_time=start_time)
+
+            # Create the reservation
+            reservation = Reservation(user=request.user, doctor=doctor, service=service, date=date, start_time=start_time, end_time=end_time.end_time, description=description)
+            reservation.save()
+            
+            messages.success(request, 'Your reservation has been successfully created.')
+            return redirect('homepage')
+        else:
+            print(form.errors)
+
+    form = ReservationForm()
+    return render(request, 'reservations.html', {'form': form})
+
+def get_doctors(request):
+    service_id = request.GET.get('service')
+    group_name = Services.objects.get(id=service_id).title + ' - Service'
+    doctors = CustomUser.objects.filter(groups__name=group_name)
+    return JsonResponse(list(doctors.values('id', 'first_name', 'last_name', 'profile_picture')), safe=False)
+
+def get_date(request):
+    date_str = request.GET.get('date')
+    date = datetime.strptime(date_str, '%Y-%m-%d').date()
+    if date < datetime.now().date():
+        return JsonResponse({'valid': False})
+    return JsonResponse({'valid': True})
+
+def get_times(request):
+    # Check if there are any reservations for the selected doctor on the selected date
+    service_id = request.GET.get('service')
+    doctor_id = request.GET.get('doctor')
+    date_str = request.GET.get('date')
+    date = datetime.strptime(date_str, f'%Y-%m-%d').date()
+
+    # Get the service's schedules
+    schedules = Schedule.objects.filter(service_id=service_id)
+
+    # Get the doctor's reservations on the selected date
+    reservations = Reservation.objects.filter(doctor_id=doctor_id, date=date)
+
+    times = []
+    for schedule in schedules:
+        start = schedule.start_time
+        end = schedule.end_time
+
+        # Check if the time slot is reserved
+        for reservation in reservations:
+            if start >= reservation.start_time and end <= reservation.end_time:
+                times.append({'time': f'{start}', 'filled': True})
+                break
+        else:
+            times.append({'time': f'{start}', 'filled': False})
+    return JsonResponse(times, safe=False)
+    
+   

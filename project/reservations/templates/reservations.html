@@ -1,282 +1,167 @@
 {% extends 'base.html' %}
-
-{% block extra_css %}
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
-{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block title %} - Reservations{% endblock %}
 
+{% block extra_css %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
-    <div class="container mx-auto text-center my-5">
-        <h1 class="mx-auto my-5">EXAMPLE 1</h1>
-        <table id="column-based" class="table table-striped nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <th class="text-center">Mon</th>
-                    <th class="text-center">Tue</th>
-                    <th class="text-center">Wed</th>
-                    <th class="text-center">Thur</th>
-                    <th class="text-center">Fri</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for schedule in examination_schedules %}
-                    <tr>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="container mx-auto text-center my-5">
-        <h1 class="mx-auto my-5">EXAMPLE 2</h1>
-        <table id="row-based" class="table table-striped nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <td class="text-center">Days</td>
-                    {% for schedule in examination_schedules %}
-                        <td></td>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">Monday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Tuesday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Wednesday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Thursday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Friday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="container mx-auto text-center my-5">
-        <h1 class="mx-auto my-5">EXAMPLE 3</h1>
-        <table id="row-based-scrollable" class="table table-striped nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <td class="text-center">Days</td>
-                    {% for schedule in examination_schedules %}
-                        <td></td>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">Monday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-danger">
-                                {{ schedule.start_time }}<br>
-                                Reserved
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Tuesday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Wednesday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Thursday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td class="text-center">Friday</td>
-                    {% for schedule in examination_schedules %}
-                        <td>
-                            <button type="button" class="btn btn-primary">
-                                {{ schedule.start_time }}<br>
-                                Available
-                            </button>
-                        </td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
+    <div class="container mx-auto my-5">
+        <h1 class="text-center my-5">Rezervacije</h1>
+        <form action="{% url 'reservations' %}" method="POST" id="reservation-form">
+            {% csrf_token %}
+            {{ form.service|as_crispy_field }}
+            {{ form.doctor|as_crispy_field }}
+            {{ form.date|as_crispy_field }}
+            {{ form.start_time|as_crispy_field }}
+            {{ form.description|as_crispy_field }}
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+        </form>
     </div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
-
-    <!-- <script>
-        $(function() {
-            var startDate;
-            var endDate;
-
-            var selectCurrentWeek = function() {
-                window.setTimeout(function () {
-                    $('#week-picker').find('.ui-datepicker-current-day a').addClass('ui-state-active')
-                }, 1);
-            }
-
-            $('#week-picker').datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                firstDay: 1,
-                onSelect: function(dateText, inst) { 
-                    var date = $(this).datepicker('getDate');
-                    startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 1);
-                    endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
-                    for (var i = 0; i < 5; i++) {
-                        var day = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
-                        $('#' + ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'][i]).text(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][i] + ' ' + day.getDate());
-                    }
-                    selectCurrentWeek();
-
-                    $.ajax({
-                        url: "{% url 'selected_date' %}",
-                        method: 'POST',
-                        data: {
-                            start_date: $.datepicker.formatDate('yy-mm-dd', startDate),
-                            end_date: $.datepicker.formatDate('yy-mm-dd', endDate),
-                            csrfmiddlewaretoken: '{{ csrf_token }}'
-                        },
-                        success: function(response) {
-                            $('#selected_date').text(response.status);
-                        }
-                    });
-                },
-                beforeShowDay: function(date) {
-                    var cssClass = '';
-                    if(date >= startDate && date <= endDate)
-                        cssClass = 'ui-datepicker-current-day';
-                    return [true, cssClass];
-                },
-                onChangeMonthYear: function(year, month, inst) {
-                    selectCurrentWeek();
-                }
-            });
-
-            $('.ui-datepicker-calendar tr').on('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });
-            $('.ui-datepicker-calendar tr').on('mouseleave', function() { $(this).find('td a').removeClass('ui-state-hover'); });
-        });
-    </script> -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#column-based').DataTable({
-                responsive: true,
-                ordering: false,
+            $('#reservation-form').submit(function(e) {
+                if (!$('#id_service').val() || !$('#id_doctor').val() || !$('#id_date').val() || !$('#id_start_time').val()) {
+                    e.preventDefault();
+                    alert('Please fill all the fields');
+                }
+                if ($('#id_description').val() == 'Placeholder') {
+                    $('#id_description').val('');
+                }
             });
-            $('#row-based').DataTable({
-                responsive: true,
-                ordering: false,
+            $('#id_service').select2({
+                placeholder: 'Select a service',
+                theme: 'bootstrap',
+                allowClear: true
             });
-            $('#row-based-scrollable').DataTable({
-                scrollX: true,
-                ordering: false,
+            $('#id_doctor').select2({
+                placeholder: 'Select a doctor',
+                theme: 'bootstrap',
+                allowClear: true
             });
+            $('#id_start_time').select2({
+                placeholder: 'Select available term',
+                theme: 'bootstrap',
+                allowClear: true
+            });
+            // Make the empty labels unselectable
+            $('#id_service option:first, #id_date option:first').attr('disabled', true);
+            $('#id_date').val('');
+
+            $('#id_service').change(function() {
+                var serviceId = $(this).val();
+                if (serviceId) {
+                    $.ajax({
+                        url: '/get_doctors/',
+                        data: {
+                            'service': serviceId
+                        },
+                        success: function(data) {
+                            var select = $('#id_doctor');
+                            select.empty();
+                            var placeholder = $('<option></option>').text('You can now select the doctor').attr('disabled', true);
+                            select.append(placeholder);
+                            if (data.length > 0) {
+                                $.each(data, function(index, value) {
+                                    select.append($('<option></option>').attr('value', value.id).text(value.first_name + ' ' + value.last_name));
+                                });
+                                select.prop('disabled', false);
+                                placeholder.prop('selected', true);
+                                // Log the json data to the console
+                                console.log(data);
+                            } else {
+                                select.append($('<option></option>').text('No doctors available'));
+                                select.prop('disabled', true);
+                                $('#id_date').prop('disabled', true);
+                            }
+                        }
+                    });
+                } else {
+                    var select = $('#id_doctor');
+                    select.empty();
+                    select.append($('<option></option>').text('Please select a service first'));
+                    select.prop('disabled', true);
+                    $('#id_date').prop('disabled', true);
+                }
+            }).change();  // Trigger the change event manually
+
+            $('#id_doctor').change(function() {
+                if ($(this).val() && !$(this).prop('disabled')) {
+                    // Enable the date field when a doctor is selected and the doctor field is not disabled
+                    $('#id_date').prop('disabled', false);
+                    // Set the minimum date to today's date
+                    $('#id_date').attr('min', new Date().toISOString().split('T')[0]);
+
+                    // If the date field is not empty, refresh the times
+                    if ($('#id_date').val()) {
+                        $('#id_date').change();
+                    } else {
+                        // If the date field is empty, disable the start_time field
+                        $('#id_start_time').prop('disabled', true);
+                    }
+                } else {
+                    // Disable the date field when no doctor is selected or the doctor field is disabled
+                    $('#id_date').prop('disabled', true);
+                    $('#id_start_time').prop('disabled', true);
+                }
+            }).change();  // Trigger the change event manually
+
+           $('#id_date').change(function() {
+                var date = $(this).val();
+                if (date) {
+                    $.ajax({
+                        url: '/get_date/',
+                        data: {
+                            'date': date
+                        },
+                        success: function(data) {
+                            if (data.valid) {
+                                $.ajax({
+                                    url: '/get_times/',
+                                    data: {
+                                        'date': date,
+                                        'doctor': $('#id_doctor').val(),
+                                        'service': $('#id_service').val()
+                                    },
+                                    success: function(data) {
+                                        var select = $('#id_start_time');
+                                        select.empty();
+                                        var placeholder = $('<option></option>').text('Please select a time').attr('disabled', true);
+                                        select.append(placeholder);
+                                        if (data.length > 0) {
+                                            $.each(data, function(index, value) {
+                                                var option = $('<option></option>').attr('value', value.time).text(value.time);
+                                                if (value.filled) {
+                                                    option.attr('disabled', true);
+                                                }
+                                                select.append(option);
+                                            });
+                                            select.prop('disabled', false);
+                                            placeholder.prop('selected', true);
+                                        } else {
+                                            select.append($('<option></option>').text('No times available'));
+                                            select.prop('disabled', true);
+                                        }
+                                    }
+                                });
+                            } else {
+                                $('#id_start_time').prop('disabled', true);
+                            }
+                        }
+                    });
+                } else {
+                    $('#id_start_time').prop('disabled', true);
+                }
+            }).change();
         });
     </script>
 {% endblock %}
