@@ -88,10 +88,21 @@ def get_times(request):
     # Get the doctor's reservations on the selected date
     reservations = Reservation.objects.filter(doctor_id=doctor_id, date=date)
 
+    current_time = datetime.now().time()
+    current_date = datetime.now().date()
+
+    print(current_date, date)
+    print(current_time)
+
     times = []
     for schedule in schedules:
         start = schedule.start_time
         end = schedule.end_time
+
+        # Check if the current date is the selected date and the start time is earlier than the current time
+        if date == current_date and start < current_time:
+            times.append({'time': f'{start}', 'filled': True})
+            continue
 
         # Check if the time slot is reserved
         for reservation in reservations:
@@ -100,6 +111,6 @@ def get_times(request):
                 break
         else:
             times.append({'time': f'{start}', 'filled': False})
+
     return JsonResponse(times, safe=False)
     
-   
