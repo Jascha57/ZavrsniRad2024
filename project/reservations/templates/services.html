@@ -36,9 +36,15 @@
                             </div>
                         {% endif %}
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">Book Now</a>
-                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="card-footer text-center">
+                            <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">Book Now</a>
+                        </div>
+                    {% else %}
+                        <div class="card-footer text-center">
+                            <a href="{% url 'login' %}" class="btn btn-primary">Login to make reservations</a>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% endif %}

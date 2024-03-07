@@ -18,6 +18,8 @@ def services(request):
     return render(request, 'services.html', {'services': services})
 
 def reservations(request, service_id=None):
+    if request.user.is_authenticated is False:
+        return redirect('login')
     if request.method == 'POST':
         form = ReservationForm(request.POST)
 
