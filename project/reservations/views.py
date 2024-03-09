@@ -66,12 +66,16 @@ def reservations(request, service_id=None):
 
 def get_doctors(request):
     service_id = request.GET.get('service')
+    if not service_id:
+        return JsonResponse({'error': 'Missing service_id parameter'}, status=400)
     group_name = Services.objects.get(id=service_id).title + ' - Service'
     doctors = CustomUser.objects.filter(groups__name=group_name)
     return JsonResponse(list(doctors.values('id', 'first_name', 'last_name', 'profile_picture')), safe=False)
 
 def get_date(request):
     date_str = request.GET.get('date')
+    if not date_str:
+        return JsonResponse({'error': 'Missing date parameter'}, status=400)
     date = datetime.strptime(date_str, '%Y-%m-%d').date()
     if date < datetime.now().date():
         return JsonResponse({'valid': False})
@@ -80,8 +84,14 @@ def get_date(request):
 def get_times(request):
     # Check if there are any reservations for the selected doctor on the selected date
     service_id = request.GET.get('service')
+    if not service_id:
+        return JsonResponse({'error': 'Missing service_id parameter'}, status=400)
     doctor_id = request.GET.get('doctor')
+    if not doctor_id:
+        return JsonResponse({'error': 'Missing doctor_id parameter'}, status=400)
     date_str = request.GET.get('date')
+    if not date_str:
+        return JsonResponse({'error': 'Missing date parameter'}, status=400)
     date = datetime.strptime(date_str, f'%Y-%m-%d').date()
 
     # Get the service's schedules
