@@ -1,15 +1,27 @@
 from django.contrib import admin
+from django.utils.html import format_html
+
 from .models import *
 
 class EventAdmin(admin.ModelAdmin):
     model = Event
-    list_display = ('title', 'date', 'description')
-    readonly_fields = ('slug',)
+    list_display = ('title', 'date', 'published')
+    readonly_fields = ('slug', 'display_thumbnail')
+    fields = ('thumbnail', 'display_thumbnail', 'title', 'description', 'location', 'date', 'published')
+
+    def display_thumbnail(self, obj):
+        return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)
+    display_thumbnail.short_description = 'Thumbnail Preview'
 
 class NewsAdmin(admin.ModelAdmin):
     model = News
-    list_display = ('title', 'date', 'short_description')
-    readonly_fields = ('slug',)
+    list_display = ('title', 'date', 'published')
+    readonly_fields = ('slug', 'display_thumbnail', 'date')
+    fields = ('author', 'thumbnail', 'display_thumbnail', 'title', 'description', 'short_description', 'published')
+
+    def display_thumbnail(self, obj):
+        return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)
+    display_thumbnail.short_description = 'Thumbnail Preview'
 
 class ServicesAdmin(admin.ModelAdmin):
     model = Services

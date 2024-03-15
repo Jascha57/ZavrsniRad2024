@@ -2,6 +2,7 @@
     --main-colour: #4bbcd7;
     --secondary-colour: gray;
     --tertiary-colour: #111;
+    --button-colour: #0D9276;
 }
 
 /* GENERAL STYLING STARTS HERE */
@@ -87,9 +88,9 @@ footer i{
 }
 
 .call-to-action{
-    background-color: var(--main-colour);
+    background-color: var(--button-colour);
     color: white;
-    border: 1px solid var(--main-colour);
+    border: 1px solid var(--button-colour);
     text-decoration: none;
     padding: 15px;
 }
@@ -97,6 +98,12 @@ footer i{
 .logo-image{
     width: 32px;
     height: 32px;
+}
+
+.btn-primary{
+    background-color: var(--button-colour) !important;
+    border: 1px solid var(--button-colour) !important;
+    border-radius: 0 !important;
 }
 
 /* GENERAL STYLING STARTS HERE */
@@ -109,6 +116,7 @@ i{
 
 .card{
     border: none;
+    border-radius: 0;
 }
 
 .img-thumbnail{

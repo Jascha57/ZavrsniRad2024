@@ -16,7 +16,8 @@ class Event(models.Model):
     title = models.CharField(max_length=100, default='Title', blank=False, null=False, unique=True)
     description = CKEditor5Field('Text', config_name='extends')
     location = models.CharField(max_length=100, default='Location', blank=False, null=False)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField()
+    published = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Event'
@@ -38,6 +39,7 @@ class News(models.Model):
     description = CKEditor5Field('Text', config_name='extends')
     short_description = models.TextField(max_length=100, default='Short description', blank=False, null=False)
     date = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'News'
@@ -54,7 +56,7 @@ class News(models.Model):
 class Services(models.Model):
     slug = models.SlugField(unique=True, null=False, blank=True, editable=False)
     title = models.CharField(max_length=100, default='Title', blank=False, null=False, unique=True)
-    description = models.TextField(max_length=1000, default='Description', blank=False, null=False)
+    description = CKEditor5Field('Text', config_name='extends')
     duration = models.IntegerField(default=30, blank=False, null=False, help_text='Duration in minutes')
 
     class Meta:

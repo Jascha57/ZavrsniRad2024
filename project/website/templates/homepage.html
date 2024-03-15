@@ -79,7 +79,7 @@
         </div>
     </div>
     <!-- LATEST NEWS (DYNAMIC) -->
-    <div class="container">
+    <div class="container my-5">
         {% if not latest_news %}
             <div class="mx-auto my-5">
                 <h1 class="text-center">No news available.</h1>
@@ -106,19 +106,27 @@
                                         <small class="text-muted">{{ news.author.first_name }} {{ news.author.last_name }}</small>
                                     </div>
                                 </div>
-                                <a href="{% url 'news_article' news.slug %}" class="btn btn-primary my-2">Read More</a>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'news_article' news.slug %}" class="btn btn-primary my-2">Read More</a>
+                                    {% if request.user.is_authenticated and request.user.is_staff %}
+                                        <span class="my-auto">
+                                            {% if news.published %}
+                                            <i class="fas fa-check-circle text-success"></i><small class="text-muted"> Published</small>
+                                            {% else %}
+                                            <i class="fas fa-times-circle text-danger"></i><small class="text-muted"> Not published</small>
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-            <div class="text-center my-5">
-                <a href="{% url 'news' %}" class="call-to-action">SEE ALL NEWS</a>
-            </div>
         {% endif %}
     </div>
     <!-- LATEST EVENTS (DYNAMIC) -->
-    <div class="container">
+    <div class="container my-5">
         {% if not latest_events %}
             <div class="mx-auto my-5">
                 <h1 class="text-center">No events available.</h1>
@@ -144,14 +152,22 @@
                                         <small class="text-muted">{{ event.location }}</small>
                                     </div>
                                 </div>
-                                <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
+                                    {% if request.user.is_authenticated and request.user.is_staff %}
+                                        <span class="my-auto">
+                                            {% if event.published %}
+                                                <i class="fas fa-check-circle text-success"></i><small class="text-muted"> Published</small>
+                                            {% else %}
+                                                <i class="fas fa-times-circle text-danger"></i><small class="text-muted"> Not published</small>
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-            <div class="text-center my-5">
-                <a href="{% url 'events' %}" class="call-to-action">SEE ALL EVENTS</a>
             </div>
         {% endif %}
     </div>
