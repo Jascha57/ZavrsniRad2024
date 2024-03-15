@@ -76,8 +76,6 @@
                                 });
                                 select.prop('disabled', false);
                                 placeholder.prop('selected', true);
-                                // Log the json data to the console
-                                console.log(data);
                             } else {
                                 select.append($('<option></option>').text('No doctors available'));
                                 select.prop('disabled', true);
@@ -92,7 +90,7 @@
                     select.prop('disabled', true);
                     $('#id_date').prop('disabled', true);
                 }
-            }).change();  // Trigger the change event manually
+            }).change();
 
             $('#id_doctor').change(function() {
                 if ($(this).val() && !$(this).prop('disabled')) {
@@ -113,7 +111,7 @@
                     $('#id_date').prop('disabled', true);
                     $('#id_start_time').prop('disabled', true);
                 }
-            }).change();  // Trigger the change event manually
+            }).change();
 
            $('#id_date').change(function() {
                 var date = $(this).val();
@@ -139,7 +137,9 @@
                                         select.append(placeholder);
                                         if (data.length > 0) {
                                             $.each(data, function(index, value) {
-                                                var option = $('<option></option>').attr('value', value.time).text(value.time);
+                                                var formattedTime = value.time.substring(0, value.time.length - 3);
+
+                                                var option = $('<option></option>').attr('value', value.time).text(formattedTime);
                                                 if (value.filled) {
                                                     option.attr('disabled', true);
                                                 }
@@ -160,6 +160,55 @@
                     });
                 } else {
                     $('#id_start_time').prop('disabled', true);
+                }
+            }).change();
+
+            $('#id_service').change(function() {
+                var select2Selection = $(this).next('.select2-container').find('.select2-selection');
+                if ($(this).val() && !$(this).is(':disabled')) {
+                    select2Selection.removeClass('incomplete-select');
+                    select2Selection.addClass('complete-select');
+                } else {
+                    select2Selection.removeClass('complete-select');
+                    select2Selection.addClass('incomplete-select');
+                    $('#id_date').val('').change();
+                }
+
+                $('#id_doctor, #id_date, #id_start_time').change();
+            }).change();
+
+            $('#id_doctor').change(function() {
+                var select2Selection = $(this).next('.select2-container').find('.select2-selection');
+                if ($(this).val() && !$(this).is(':disabled')) {
+                    select2Selection.removeClass('incomplete-select');
+                    select2Selection.addClass('complete-select');
+                } else {
+                    select2Selection.removeClass('complete-select');
+                    select2Selection.addClass('incomplete-select');
+                    $('#id_date').val('').change();
+                }
+
+                $('#id_date, #id_start_time').change();
+            }).change();
+
+            $('#id_start_time').change(function() {
+                var select2Selection = $(this).next('.select2-container').find('.select2-selection');
+                if ($(this).val() && !$(this).is(':disabled')) {
+                    select2Selection.removeClass('incomplete-select');
+                    select2Selection.addClass('complete-select');
+                } else {
+                    select2Selection.removeClass('complete-select');
+                    select2Selection.addClass('incomplete-select');
+                }
+            }).change();
+
+            $('#id_date').change(function() {
+                if ($(this).val() && !$(this).is(':disabled')) {
+                    $(this).removeClass('incomplete-select');
+                    $(this).addClass('complete-select');
+                } else {
+                    $(this).removeClass('complete-select');
+                    $(this).addClass('incomplete-select');
                 }
             }).change();
         });

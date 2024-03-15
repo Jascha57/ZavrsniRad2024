@@ -20,6 +20,14 @@ class ReservationForm(forms.ModelForm):
         self.fields['start_time'].widget.attrs['disabled'] = True
         self.fields['description'].widget.attrs['placeholder'] = 'Here you can add your symptoms or any other information you want to share with the doctor.'
         self.fields['description'].required = False
+
+        # Labels
+        self.fields['doctor'].label = 'Doctor (Required)'
+        self.fields['service'].label = 'Service (Required)'
+        self.fields['date'].label = 'Date (Required)'
+        self.fields['start_time'].label = 'Start Time (Required)'
+        self.fields['description'].label = 'Description (Optional)'
+
         self.fields['doctor'].queryset = CustomUser.objects.none()
 
         # If the form is bound, set the choices for the doctor field

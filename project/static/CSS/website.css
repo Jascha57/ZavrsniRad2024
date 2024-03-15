@@ -178,3 +178,44 @@ i{
 }
 
 /* DATATABLES STYLING ENDS HERE */
+
+
+/* RESERVATION STYLING STARTS HERE */
+
+#reservation-form div{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.complete-select{
+    border: 1px solid #25d366 !important;
+}
+
+.incomplete-select{
+    border: 1px solid crimson !important;
+}
+
+#id_description {
+    border-radius: 0;
+}
+
+.select2 {
+    width: auto !important;
+}
+
+.select2-selection, #id_date, .select2-dropdown {
+    border-radius: 0 !important;
+}
+
+.select2-selection__clear{
+    font-size: 2em;
+    line-height: 0.75;
+    color: crimson !important;
+}
+
+.select2-selection__rendered {
+    display: flex;
+    align-items: center;
+}
+/* RESERVATION STYLING ENDS HERE */

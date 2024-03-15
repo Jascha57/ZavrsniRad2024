@@ -103,9 +103,6 @@ def get_times(request):
     current_time = datetime.now().time()
     current_date = datetime.now().date()
 
-    print(current_date, date)
-    print(current_time)
-
     times = []
     for schedule in schedules:
         start = schedule.start_time
