@@ -14,7 +14,7 @@ def services(request):
     services = Services.objects.all()
     for service in services:
         group_name = service.title + ' - Service'
-        service.doctors = CustomUser.objects.filter(groups__name=group_name)
+        service.doctors = CustomUser.objects.filter(groups__name=group_name)[:3]
     return render(request, 'services.html', {'services': services})
 
 def reservations(request, service_id=None):
