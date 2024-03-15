@@ -13,5 +13,6 @@ media/
 .vscode/
 *.log
 staticfiles/
+secret_key.py
 # Ignore environment file
 .env
