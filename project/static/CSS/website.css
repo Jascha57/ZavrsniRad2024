@@ -106,6 +106,10 @@ footer i{
     border-radius: 0 !important;
 }
 
+.btn{
+    border-radius: 0;
+}
+
 /* GENERAL STYLING STARTS HERE */
 
 /* CARD STYLING ON HOME PAGE STARTS HERE */
@@ -136,7 +140,6 @@ i{
 .service-card h2{
     border-bottom: 3px solid var(--main-colour);
 }
-
 
 /* CARD STYLING ON HOME PAGE ENDS HERE */
 
@@ -218,4 +221,9 @@ i{
     display: flex;
     align-items: center;
 }
+
+.modal-content{
+    border-radius: 0;
+}
+
 /* RESERVATION STYLING ENDS HERE */

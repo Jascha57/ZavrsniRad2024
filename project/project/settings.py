@@ -181,8 +181,10 @@ JAZZMIN_SETTINGS = {
         "website.news": "fas fa-newspaper",
         "website.event": "fas fa-calendar-alt",
         "website.services": "fas fa-hands-helping",
+        "website.schedule": "fas fa-clock",
         "users.customuser": "fas fa-user",
         "users.groupproxy": "fas fa-users-cog",
+        "reservations.reservation": "fas fa-calendar-check",
     },
 }
 

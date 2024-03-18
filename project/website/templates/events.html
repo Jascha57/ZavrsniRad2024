@@ -32,7 +32,18 @@
                                 <small class="text-muted">{{ event.location }}</small>
                             </div>
                         </div>
-                        <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'event' event.slug %}" class="btn btn-primary my-2">Read More</a>
+                            {% if request.user.is_authenticated and request.user.is_staff %}
+                                <span class="my-auto">
+                                    {% if event.published %}
+                                    <i class="fas fa-check-circle text-success"></i><small class="text-muted"> Published</small>
+                                    {% else %}
+                                    <i class="fas fa-times-circle text-danger"></i><small class="text-muted"> Not published</small>
+                                    {% endif %}
+                                </span>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags static %}
 
 {% block title %} - Reservations{% endblock %}
 
 {% block extra_css %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .modal-content {
+            background-image: url('{% static "IMAGES/BACKGROUNDS/pattern-blue-sky.jpg" %}');
+            background-repeat: repeat;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     <div class="container mx-auto my-5">
         <h1 class="text-center my-5">Rezervacije</h1>
+        <div class="container d-flex flex-column align-items-center">
+            <ul>
+                <li>Service: <strong><span id="selected-service"></span></li></strong>
+                <li>Doctor: <strong><span id="selected-doctor"></span></li></strong>
+                <li>Date: <strong><span id="selected-date"></span></li></strong>
+                <li>Time: <strong><span id="selected-time"></span></li></strong>
+            </ul>
+        </div>
         <form action="{% url 'reservations' %}" method="POST" id="reservation-form">
             {% csrf_token %}
             {{ form.service|as_crispy_field }}
@@ -19,10 +34,13 @@
             {{ form.start_time|as_crispy_field }}
             {{ form.description|as_crispy_field }}
             <div class="text-center">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal" id="check-details-button">
+                    CHECK DETAILS
+                </button>
             </div>
         </form>
     </div>
+    {% include 'modals/reservation-details.html' %}
 {% endblock %}
 
 {% block scripts %}
@@ -90,6 +108,7 @@
                     select.prop('disabled', true);
                     $('#id_date').prop('disabled', true);
                 }
+                $('#selected-service').text($(this).find('option:selected').text());
             }).change();
 
             $('#id_doctor').change(function() {
@@ -111,6 +130,7 @@
                     $('#id_date').prop('disabled', true);
                     $('#id_start_time').prop('disabled', true);
                 }
+                $('#selected-doctor').text($(this).find('option:selected').text());
             }).change();
 
            $('#id_date').change(function() {
@@ -161,6 +181,11 @@
                 } else {
                     $('#id_start_time').prop('disabled', true);
                 }
+                $('#selected-date').text($(this).val());
+            }).change();
+
+            $('#id_start_time').change(function() {
+                $('#selected-time').text($(this).find('option:selected').text());
             }).change();
 
             $('#id_service').change(function() {
@@ -211,6 +236,32 @@
                     $(this).addClass('incomplete-select');
                 }
             }).change();
+
+            function checkForm() {
+                if ($('#id_service').val() && !$('#id_service').is(':disabled') &&
+                    $('#id_doctor').val() && !$('#id_doctor').is(':disabled') &&
+                    $('#id_date').val() && !$('#id_date').is(':disabled') &&
+                    $('#id_start_time').val() && !$('#id_start_time').is(':disabled')) {
+                    $('#check-details-button').prop('disabled', false);
+                } else {
+                    $('#check-details-button').prop('disabled', true);
+                }
+            }
+
+            checkForm();
+
+            $('#id_service, #id_doctor, #id_date, #id_start_time').change(checkForm);
+
+            $('#check-details-button').click(function() {
+                $('#confirm-service').text($('#selected-service').text());
+                $('#confirm-doctor').text($('#selected-doctor').text());
+                $('#confirm-date').text($('#selected-date').text());
+                $('#confirm-time').text($('#selected-time').text());
+            });
+
+            $('#confirm-button').click(function() {
+                $('#reservation-form').submit();
+            });
         });
     </script>
 {% endblock %}
