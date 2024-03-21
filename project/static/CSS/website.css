@@ -227,3 +227,17 @@ i{
 }
 
 /* RESERVATION STYLING ENDS HERE */
+
+
+/* ABOUT US STYLING STARTS HERE */
+
+.accordion-item, .accordion-button{
+    border-radius: 0px !important;
+}
+
+iframe{
+    width: 100%;
+    height: 400px;
+}
+
+/* ABOUT US STYLING ENDS HERE */

@@ -3,11 +3,21 @@ from django.utils.html import format_html
 
 from .models import *
 
+# CUSTOM ACTIONS
+
+@admin.action(description='Unpublish selected news or events')
+def unpublish(modeladmin, request, queryset):
+    queryset.update(published=False)
+@admin.action(description='Publish selected news or events')
+def publish(modeladmin, request, queryset):
+    queryset.update(published=True)
+
 class EventAdmin(admin.ModelAdmin):
     model = Event
     list_display = ('title', 'date', 'published')
     readonly_fields = ('slug', 'display_thumbnail')
     fields = ('thumbnail', 'display_thumbnail', 'title', 'description', 'location', 'date', 'published')
+    actions = [unpublish, publish]
 
     def display_thumbnail(self, obj):
         return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)
@@ -18,6 +28,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'published')
     readonly_fields = ('slug', 'display_thumbnail', 'date')
     fields = ('author', 'thumbnail', 'display_thumbnail', 'title', 'description', 'short_description', 'published')
+    actions = [unpublish, publish]
 
     def display_thumbnail(self, obj):
         return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)

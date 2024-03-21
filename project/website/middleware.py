@@ -23,6 +23,16 @@ class ServicesMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        request.services = Services.objects.all()
+        request.services = Services.objects.all()[:5]
+        response = self.get_response(request)
+        return response
+    
+
+class NewsMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        request.latest_news = News.objects.all().order_by('-date').filter(published=True)[:5]
         response = self.get_response(request)
         return response

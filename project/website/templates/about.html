@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} - About{% endblock %}
+
+{% block content %}
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'IMAGES/about-us.jpg' %}" class="d-block w-100" alt="Image of profesional doctors">
+                <div class="carousel-caption">
+                    <h5 class="display-6">About our hospital</h5>
+                    <p>Posušje Health Hospital: Where expertise meets compassion.<br>We're committed to providing top-quality healthcare with advanced technology and personalized care.</p>
+                    <a href="{% url 'services' %}" class="call-to-action">OUR SERVICES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'IMAGES/hospital-building.jpg' %}" class="img-fluid" alt="Hospital Building Image">
+            </div>
+            <div class="col-md-6">
+                <div class="accordion" id="aboutUsAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <strong>Who Are We?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#aboutUsAccordion">
+                            <div class="accordion-body">
+                                Posušje Health Hospital stands as a beacon of excellence in healthcare, serving our community with unwavering commitment and compassion. With a legacy of patient-centered care, we prioritize the well-being and comfort of every individual who walks through our doors.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <strong>Our Services</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#aboutUsAccordion">
+                            <div class="accordion-body">
+                                At Posušje Health Hospital, we offer a comprehensive array of services designed to meet the diverse needs of our patients. From diagnostic imaging and surgical interventions to specialized treatments and preventive care, our multidisciplinary team is dedicated to delivering high-quality healthcare solutions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <strong>Qualified Doctors</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#aboutUsAccordion">
+                            <div class="accordion-body">
+                                Our team comprises seasoned professionals and esteemed specialists who are leaders in their respective fields. With extensive training, expertise, and a passion for excellence, our doctors are committed to providing personalized care and achieving optimal outcomes for every patient.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Contact Information</h2>
+                <p><strong>Address:</strong> Posušje, Bosna i Hercegovina, 88240</p>
+                <p><strong>Phone:</strong> +1 234 567 89</p>
+                <p><strong>Email:</strong> info@example.com</p>
+                <p><strong>Opening Hours:</strong> 07:00 to 21:00</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11581.939037125136!2d17.31843528130369!3d43.471352910062265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134b26df70a1f60f%3A0xab55804f498b7c75!2sPosu%C5%A1je%2C%20Bosna%20i%20Hercegovina!5e0!3m2!1shr!2shr!4v1711028562250!5m2!1shr!2shr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+{% endblock %}

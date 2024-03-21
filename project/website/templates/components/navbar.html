@@ -33,10 +33,7 @@
           <a class="nav-link {% if request.path == '/events/' %} active {% endif %}" href="{% url 'events' %}">Events</a>
         </li>
         <li class="nav-item my-auto">
-          <a class="nav-link" href="#">Our Staff</a>
-        </li>
-        <li class="nav-item my-auto">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'about' %}">About Us</a>
         </li>
         {% if user.is_authenticated %}
           <li class="nav-item my-auto">

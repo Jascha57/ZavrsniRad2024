@@ -15,6 +15,9 @@ def homepage(request):
         latest_events = Event.objects.filter(published=True).order_by('-date')[:3]
     return render(request, 'homepage.html', {'latest_news': latest_news, 'latest_events': latest_events})
 
+def about(request):
+    return render(request, 'about.html')
+
 def news(request):
     search_query = request.GET.get('search', '')
     news = News.objects.annotate(

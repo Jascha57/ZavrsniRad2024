@@ -59,7 +59,10 @@ def reservations(request, service_id=None):
             messages.error(request, 'An error occurred while creating the reservation.')
 
     if service_id:
-        form = ReservationForm(initial={'service': service_id})
+        if not Services.objects.filter(id=service_id).exists():
+            form = ReservationForm()
+        else:
+            form = ReservationForm(initial={'service': service_id})
     else:
         form = ReservationForm()
     return render(request, 'reservations.html', {'form': form})

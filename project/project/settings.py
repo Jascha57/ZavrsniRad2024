@@ -80,6 +80,7 @@ MIDDLEWARE = [
     # Custom middleware
     'website.middleware.AdminAccessMiddleware',
     'website.middleware.ServicesMiddleware',
+    'website.middleware.NewsMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
