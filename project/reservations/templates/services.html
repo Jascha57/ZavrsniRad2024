@@ -3,6 +3,26 @@
 {% block title %} - Services{% endblock %}
 
 {% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-text">
+                Go to:
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    {% for service in services %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#{{ service.title }}">{{ service.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container my-5">
         <h1 class="text-center">Services</h1>
         {% if not services %}
