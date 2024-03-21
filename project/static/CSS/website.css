@@ -110,6 +110,14 @@ footer i{
     border-radius: 0;
 }
 
+.responsive-title{
+    font-size: 2em;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* GENERAL STYLING STARTS HERE */
 
 /* CARD STYLING ON HOME PAGE STARTS HERE */

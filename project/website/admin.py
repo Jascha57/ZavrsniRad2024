@@ -20,7 +20,7 @@ class EventAdmin(admin.ModelAdmin):
     actions = [unpublish, publish]
 
     def display_thumbnail(self, obj):
-        return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)
+        return format_html('<img src="{}" width="300" height="300" class="img-fluid" />', obj.thumbnail.url)
     display_thumbnail.short_description = 'Thumbnail Preview'
 
 class NewsAdmin(admin.ModelAdmin):
@@ -31,7 +31,7 @@ class NewsAdmin(admin.ModelAdmin):
     actions = [unpublish, publish]
 
     def display_thumbnail(self, obj):
-        return format_html('<img src="{}" width="300" height="300" />', obj.thumbnail.url)
+        return format_html('<img src="{}" width="300" height="300" class="img-fluid" />', obj.thumbnail.url)
     display_thumbnail.short_description = 'Thumbnail Preview'
 
 class ServicesAdmin(admin.ModelAdmin):
