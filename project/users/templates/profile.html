@@ -104,15 +104,21 @@
 
     <script>
         $(document).ready(function() {
-            $('#reservation-table').DataTable({
+            var table = $('#reservation-table').DataTable({
                 responsive: true,
                 sorting: true,
                 colReorder: true,
                 layout: {
                     top: {
-                        buttons: ['colvis']
+                        buttons: ['colvis'],
                     }
                 },
+            });
+
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+                if (e.target.id === 'reservations-tab') {
+                    table.columns.adjust().responsive.recalc();
+                }
             });
         });
     </script>
