@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 
 from .forms import *
 from .decorators import *
+from reservations.models import *
 
 @user_not_authenticated
 def register(request):
@@ -48,4 +49,16 @@ def custom_logout(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.user.is_staff:
+        # Check if the user is a part of a group with "Service" in the name
+        if request.user.groups.filter(name__icontains='Service').exists():
+            # Return all reservations where the user is the doctor
+            reservations = Reservation.objects.filter(doctor=request.user)
+        else:
+            # Return all reservations where the user is the patient
+            reservations = Reservation.objects.filter(patient=request.user)
+    else:
+        reservations = Reservation.objects.filter(patient=request.user)
+    return render(request, 'profile.html', context={
+        'reservations': reservations,
+    })
