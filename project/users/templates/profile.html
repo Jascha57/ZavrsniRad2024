@@ -68,7 +68,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for reservation in reservations %}
+                        {% if reservations %}
+                            {% for reservation in reservations %}
                             <tr>
                                 <td>{{ reservation.user.first_name }} {{ reservation.user.last_name }}</td>
                                 <td>{{ reservation.doctor.first_name }} {{ reservation.doctor.last_name }}</td>
@@ -77,7 +78,8 @@
                                 <td>{{ reservation.start_time }}</td>
                                 <td>{{ reservation.end_time }}</td>
                             </tr>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
             </div>

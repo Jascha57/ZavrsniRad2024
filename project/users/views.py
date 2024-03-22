@@ -56,9 +56,9 @@ def profile(request):
             reservations = Reservation.objects.filter(doctor=request.user)
         else:
             # Return all reservations where the user is the patient
-            reservations = Reservation.objects.filter(patient=request.user)
+            reservations = Reservation.objects.filter(user=request.user)
     else:
-        reservations = Reservation.objects.filter(patient=request.user)
+        reservations = Reservation.objects.filter(user=request.user)
     return render(request, 'profile.html', context={
         'reservations': reservations,
     })
