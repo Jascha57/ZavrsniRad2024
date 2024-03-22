@@ -1,14 +1,10 @@
 from typing import Any
 from django import forms
-from django_recaptcha.fields import ReCaptchaField
-from django_recaptcha.widgets import ReCaptchaV3
 
 from .models import *
 from users.models import CustomUser
 
 class ReservationForm(forms.ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaV3)
-    
     class Meta:
         model = Reservation
         fields = ['doctor', 'service', 'date', 'start_time', 'description']
