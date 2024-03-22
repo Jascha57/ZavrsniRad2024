@@ -37,7 +37,7 @@
         </li>
         {% if user.is_authenticated %}
           <li class="nav-item my-auto">
-            <a class="nav-link" href="#">
+            <a class="nav-link {% if request.path == '/profile/' %} active {% endif %}" href="{% url 'profile' %}">
               <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
               {{ user.first_name }} {{ user.last_name }}
             </a>

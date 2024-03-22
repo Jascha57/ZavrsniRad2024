@@ -45,3 +45,7 @@ def custom_logout(request):
     logout(request)
     messages.success(request, "You have successfully logged out.")
     return redirect('homepage')
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')

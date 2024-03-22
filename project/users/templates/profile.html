@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %} - Profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.0/css/responsive.bootstrap5.css">
+
+    <!-- Enable/disable columns -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Profile</span>
+            </div>
+        </nav>
+
+        <ul class="nav nav-tabs mt-3">
+            <li class="nav-item">
+                <a class="nav-link active" id="information-tab" data-bs-toggle="tab" href="#information">Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="reservations-tab" data-bs-toggle="tab" href="#reservations">Reservations</a>
+            </li>
+            {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" id="admin-panel" href="{% url 'admin:index' %}">Go To Admin Panel</a>
+                </li>
+            {% endif %}
+        </ul>
+
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="information">
+                <div class="row mx-auto">
+                    <div class="col-md-4 text-center">
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid">
+                    </div>
+                    <div class="col-md-8 my-5">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>First Name:</strong> {{ user.first_name }}</li>
+                            <li class="list-group-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
+                            <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Departments:</strong></li>
+                                {% for group in user.groups.all %}
+                                    <li class="list-group-item">{{ group.name }}</li>
+                                {% empty %}
+                                    <li class="list-group-item">User is not a part of any department.</li>
+                                {% endfor %}
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="reservations">
+                <table id="reservation-table" class="table table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                            <th>Extn.</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tiger</td>
+                            <td>Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011-04-25</td>
+                            <td>$320,800</td>
+                            <td>5421</td>
+                            <td>t.nixon@datatables.net</td>
+                        </tr>
+                        <tr>
+                            <td>Garrett</td>
+                            <td>Winters</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>63</td>
+                            <td>2011-07-25</td>
+                            <td>$170,750</td>
+                            <td>8422</td>
+                            <td>g.winters@datatables.net</td>
+                        </tr>
+                        <tr>
+                            <td>Ashton</td>
+                            <td>Cox</td>
+                            <td>Junior Technical Author</td>
+                            <td>San Francisco</td>
+                            <td>66</td>
+                            <td>2009-01-12</td>
+                            <td>$86,000</td>
+                            <td>1562</td>
+                            <td>a.cox@datatables.net</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.0/js/responsive.bootstrap5.js"></script>
+
+    <!-- Enable/disable columns -->
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.colVis.min.js"></script>
+
+    <!-- Reordering columns -->
+    <script src="https://cdn.datatables.net/colreorder/2.0.0/js/dataTables.colReorder.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/2.0.0/js/colReorder.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#reservation-table').DataTable({
+                responsive: true,
+                sorting: true,
+                colReorder: true,
+                layout: {
+                    top: {
+                        buttons: ['colvis']
+                    }
+                },
+            });
+        });
+    </script>
+
+{% endblock %}
