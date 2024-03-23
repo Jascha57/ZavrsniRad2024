@@ -20,7 +20,7 @@
           <ul class="dropdown-menu">
             {% if request.services is not None %}
               {% for service in request.services %}
-                <li><a class="dropdown-item" href="{% url 'services' %}#{{ service.title }}">{{ service.title }}</a></li>
+                <li><a class="dropdown-item" href="{% url 'services' %}#{{ service.title|slugify }}">{{ service.title }}</a></li>
               {% endfor %}
             {% endif %}
             <li><a class="dropdown-item" href="{% url 'services' %}">All Services</a></li>

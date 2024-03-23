@@ -49,3 +49,24 @@
 
     </div>
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var serviceSlug = window.location.hash.substring(1);
+            if (serviceSlug) {
+                var tab = new bootstrap.Tab(document.querySelector('#' + serviceSlug + '-tab'));
+                tab.show();
+            }
+
+            var dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    var serviceSlug = this.href.split('#')[1];
+                    var tab = new bootstrap.Tab(document.querySelector('#' + serviceSlug + '-tab'));
+                    tab.show();
+                });
+            });
+        });
+    </script>
+{% endblock %}
