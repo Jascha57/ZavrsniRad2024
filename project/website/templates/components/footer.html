@@ -81,7 +81,7 @@
           {% if request.services is not None %}
             {% for service in request.services %}
               <p>
-                <a href="{% url 'services' %}#{{ service.title|slufigy }}" class="text-reset">{{ service.title }}</a>
+                <a href="{% url 'services' %}#{{ service.title|slugify }}" class="text-reset">{{ service.title }}</a>
               </p>
             {% endfor %}
           {% endif %}
