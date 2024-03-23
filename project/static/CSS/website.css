@@ -118,8 +118,15 @@ footer i{
     text-overflow: ellipsis;
 }
 
+.nav-tabs{
+    border-bottom: none;
+}
+
 .nav-tabs .nav-link{
     font-weight: bold;
+    color: black;
+    border: 1px solid var(--main-colour);
+    border-radius: 0px;
 }
 
 .nav-tabs .nav-link.active{

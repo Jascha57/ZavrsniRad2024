@@ -13,7 +13,7 @@
         <ul class="nav nav-tabs mt-3">
             {% if services is not None %}
                 {% for service in services %}
-                    <li class="nav-item">
+                    <li class="nav-item my-1">
                         <a class="nav-link {% if forloop.first %}active{% endif %}" id="{{ service.title|slugify }}-tab" data-bs-toggle="tab" href="#{{ service.title|slugify }}">{{ service.title }}</a>
                     </li>
                 {% endfor %}
