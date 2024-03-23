@@ -222,7 +222,6 @@ i{
 .select2-selection__clear{
     font-size: 2em;
     line-height: 0.75;
-    color: crimson !important;
 }
 
 .select2-selection__rendered {
