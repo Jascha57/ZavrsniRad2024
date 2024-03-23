@@ -3,73 +3,49 @@
 {% block title %} - Services{% endblock %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <span class="navbar-text">
-                Go to:
-            </span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    {% for service in services %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#{{ service.title }}">{{ service.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="container my-5">
-        <h1 class="text-center">Services</h1>
-        {% if not services %}
-            <div class="mx-auto my-5">
-                <h1 class="text-center">No services available.</h1>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Services - Choose Below</span>
             </div>
-        {% else %}
-            {% for service in services %}
-                <div class="card my-5 service-card" id="{{ service.title }}">
-                    <div class="card-body row">
-                        <div class="col-md-6">
-                            <h2 class="card-title text-center my-3 responsive-title">{{ service.title }}</h2>
-                            <div class="service-description my-5">
-                                <p class="card-text text-center">{{ service.description|safe }}</p>
+        </nav>
+
+        <ul class="nav nav-tabs mt-3">
+            {% if services is not None %}
+                {% for service in services %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if forloop.first %}active{% endif %}" id="{{ service.title|slugify }}-tab" data-bs-toggle="tab" href="#{{ service.title|slugify }}">{{ service.title }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <div class="tab-content mt-3">
+            {% if services is not None %}
+                {% for service in services %}
+                    <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ service.title|slugify }}">
+                        <div class="row mx-auto my-5">
+                            <div class="col-md-6 text-center">
+                                {{ service.description|safe }}
+                            </div>
+                            <div class="col-md-6 my-5 text-center">
+                                {% if service.doctors %}
+                                    <h5><strong>Available Doctors:</strong></h5>
+                                    <ul class="list-group list-group-flush">
+                                        {% for doctor in service.doctors %}
+                                            <li class="list-group-item"><img src="{{ doctor.profile_picture.url }}" alt="Profile Picture" class="profile-picture">{{ doctor.first_name }} {{ doctor.last_name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">BOOK APPOINTMENT</a>
+                                {% else %}
+                                    <h5>No doctors available for this service.</h5>
+                                {% endif %}
                             </div>
                         </div>
-                        <div class="col-md-6 my-auto">
-                            {% if service.doctors %}
-                                <div class="my-3">
-                                    <h3 class="mr-3 text-center">Available doctors</h3>
-                                    <div class="row justify-content-center">
-                                        {% for doctor in service.doctors %}
-                                            <div class="col-6 col-md-12 d-flex align-items-center justify-content-center my-3">
-                                                <img src="{{ doctor.profile_picture.url }}" class="mr-3 profile-picture" alt="{{ doctor.first_name }} {{ doctor.last_name }}">
-                                                <h5 class="mt-0 mb-0">{{ doctor.last_name|slice:":1" }}. {{ doctor.first_name }}</h5>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                {% if user.is_authenticated %}
-                                    <div class="text-center my-5">
-                                        <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">Book Now</a>
-                                    </div>
-                                {% else %}
-                                    <div class="text-center my-5">
-                                        <a href="{% url 'login' %}" class="btn btn-primary">Login to make reservations</a>
-                                    </div>
-                                {% endif %}
-                            {% else %}
-                                <div class="my-3">
-                                    <h3 class="mr-3 text-center">No doctors available for this service.</h3>
-                                </div>
-                            {% endif %}
-                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
     </div>
 {% endblock %}
