@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth.models import Group
+import sweetify
 
 from .forms import *
 from .decorators import *
@@ -17,7 +17,7 @@ def register(request):
             group, created = Group.objects.get_or_create(name='Customer')
             user.groups.add(group)
             login(request, user)
-            messages.success(request, "You have successfully registered.")
+            sweetify.success(request, title='Success', text='You have successfully registered.', persistent='Ok')
             return redirect('homepage')
         else:
             print(form.errors)
@@ -33,7 +33,7 @@ def custom_login(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                messages.success(request, "You have successfully logged in.")
+                sweetify.success(request, title='Success', text='You have successfully logged in.', persistent='Ok')
                 next_url = request.GET.get('next', '/')
                 return redirect(next_url)
         else:
@@ -45,7 +45,7 @@ def custom_login(request):
 @login_required
 def custom_logout(request):
     logout(request)
-    messages.success(request, "You have successfully logged out.")
+    sweetify.success(request, title='Success', text='You have successfully logged out.', persistent='Ok')
     return redirect('homepage')
 
 @login_required

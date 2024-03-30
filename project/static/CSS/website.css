@@ -287,3 +287,20 @@ iframe{
 }
 
 /* ABOUT US STYLING ENDS HERE */
+
+
+/* SWEETIFY STYLING STARTS HERE */
+
+.swal2-popup{
+    border-radius: 0px;
+}
+
+.swal2-actions button{
+    background-color: var(--button-colour) !important;
+    color: white !important;
+    border: 1px solid var(--button-colour) !important;
+    text-decoration: none !important;
+    border-radius: 0px !important;
+}
+
+/* SWEETIFY STYLING ENDS HERE */

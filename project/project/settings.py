@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_recaptcha',
+    'sweetify',
 
     # Custom apps
     'website',
@@ -197,6 +198,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 RECAPTCHA_PUBLIC_KEY = env.str('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env.str('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = 0.85
+
+# Sweetify settings
+# possible options: 'sweetalert', 'sweetalert2' - default is 'sweetalert2'
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 # CKEditor settings
 customColorPalette = [

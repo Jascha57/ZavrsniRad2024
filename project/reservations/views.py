@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.http import JsonResponse
 from datetime import time, timedelta, date, datetime
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+import sweetify
 
 from website.models import *
 from users.models import CustomUser
@@ -33,7 +33,7 @@ def reservations(request, service_id=None):
         doctors = CustomUser.objects.filter(groups__name=group_name)
 
         if doctor not in doctors:
-            messages.error(request, 'The selected doctor does not provide the selected service.')
+            sweetify.error(request, title='Error', text='The selected doctor is not available for the selected service.', persistent='Ok')
             return render(request, 'reservations.html', {'form': form})
 
         form.fields['doctor'].choices = [(doctor_id, doctor_id)]
@@ -53,10 +53,10 @@ def reservations(request, service_id=None):
             reservation = Reservation(user=request.user, doctor=doctor, service=service, date=date, start_time=start_time, end_time=end_time.end_time, description=description)
             reservation.save()
             
-            messages.success(request, 'Your reservation has been successfully created.')
+            sweetify.success(request, title='Success', text='The reservation has been created.', persistent='Ok')
             return redirect('homepage')
         else:
-            messages.error(request, 'An error occurred while creating the reservation.')
+            sweetify.error(request, title='Error', text='The form is invalid.', persistent='Ok')
 
     if service_id:
         if not Services.objects.filter(id=service_id).exists():
