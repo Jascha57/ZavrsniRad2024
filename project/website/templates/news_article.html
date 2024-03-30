@@ -6,7 +6,7 @@
     <h1 class="my-3">{{ article.title }}</h1>
     <div>
         <h2>{{ article.short_description }}</h2>
-        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+        <img src="{{ article.author.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
         <small class="text-muted">{{ article.date }} by {{ article.author.first_name }} {{ article.author.last_name }}</small>
     </div>
     <div class="ck-content my-5 text-center">

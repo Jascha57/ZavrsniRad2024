@@ -65,7 +65,7 @@ def reservations(request, service_id=None):
             form = ReservationForm(initial={'service': service_id})
     else:
         form = ReservationForm()
-    return render(request, 'reservations.html', {'form': form})
+    return render(request, 'reservations.html', {'form': form, 'reservation_active': True})
 
 def get_doctors(request):
     service_id = request.GET.get('service')

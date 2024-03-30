@@ -14,7 +14,7 @@
           <a class="nav-link {% if request.path == '/' %} active {% endif %}" aria-current="page" href="{% url 'homepage' %}">Home</a>
         </li>
         <li class="nav-item my-auto dropdown">
-          <a class="nav-link dropdown-toggle {% if request.path == '/services/' %} active {% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {% if request.path == '/services/' or reservation_active %} active {% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Services
           </a>
           <ul class="dropdown-menu">
@@ -37,7 +37,7 @@
         </li>
         {% if user.is_authenticated %}
           <li class="nav-item dropdown my-auto">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle {% if request.path == '/profile/' %} active {% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
                 {{ user.first_name }} {{ user.last_name }}
             </a>
@@ -48,7 +48,7 @@
           </li>
         {% else %}
           <li class="nav-item my-auto">
-            <a class="nav-link {% if request.path == '/login/' %} active {% endif %}" href="{% url 'login' %}">Login</a>
+            <a class="nav-link {% if request.path == '/login/' or register_active %} active {% endif %}" href="{% url 'login' %}">Login</a>
           </li>
         {% endif %}
       </ul>

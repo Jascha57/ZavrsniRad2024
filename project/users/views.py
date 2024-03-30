@@ -23,7 +23,7 @@ def register(request):
             print(form.errors)
     else:
         form = userRegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form, "register_active": True})
 
 @user_not_authenticated
 def custom_login(request):
