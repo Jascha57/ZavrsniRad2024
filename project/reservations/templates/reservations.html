@@ -67,6 +67,10 @@
             // Make the empty labels unselectable
             $('#id_service option:first, #id_date option:first').attr('disabled', true);
             $('#id_date').val('');
+            var date = new Date();
+            date.setFullYear(date.getFullYear() + 1);
+            var maxDate = date.toISOString().split('T')[0];
+            $('#id_date').attr('max', maxDate);
 
             $('#id_service').change(function() {
                 var serviceId = $(this).val();
