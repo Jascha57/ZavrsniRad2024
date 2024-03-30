@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group
 from django.http import JsonResponse
 from datetime import time, timedelta, date, datetime
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
 from website.models import *
@@ -17,9 +18,8 @@ def services(request):
         service.doctors = CustomUser.objects.filter(groups__name=group_name)[:3]
     return render(request, 'services.html', {'services': services})
 
+@login_required
 def reservations(request, service_id=None):
-    if request.user.is_authenticated is False:
-        return redirect('login')
     if request.method == 'POST':
         form = ReservationForm(request.POST)
 

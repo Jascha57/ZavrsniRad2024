@@ -34,7 +34,8 @@ def custom_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You have successfully logged in.")
-                return redirect('homepage')
+                next_url = request.GET.get('next', '/')
+                return redirect(next_url)
         else:
             print(form.errors)
     else:

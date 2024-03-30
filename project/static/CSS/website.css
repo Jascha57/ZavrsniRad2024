@@ -7,6 +7,10 @@
 
 /* GENERAL STYLING STARTS HERE */
 
+* {
+    letter-spacing: 0.1px !important;
+}
+
 .oswald-700 {
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
@@ -132,6 +136,25 @@ footer i{
 .nav-tabs .nav-link.active{
     background-color: var(--main-colour);
     color: white;
+}
+
+h6 {
+    color: black;
+}
+
+.footer-contact-info i, .footer-contact-info a{
+    color: gray;
+}
+
+#login-form div, #register-form div {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-form div input, #register-form div input, #register-form div select {
+    border-radius: 0px;
+    border: 1px solid var(--main-colour);
 }
 
 /* GENERAL STYLING STARTS HERE */

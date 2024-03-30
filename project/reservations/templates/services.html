@@ -36,7 +36,11 @@
                                             <li class="list-group-item"><img src="{{ doctor.profile_picture.url }}" alt="Profile Picture" class="profile-picture">{{ doctor.first_name }} {{ doctor.last_name }}</li>
                                         {% endfor %}
                                     </ul>
-                                    <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">BOOK APPOINTMENT</a>
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'reservations_with_service' service.id %}" class="btn btn-primary">BOOK APPOINTMENT</a>
+                                    {% else %}
+                                        <a href="{% url 'login' %}?next={% url 'reservations_with_service' service.id %}" class="btn btn-primary">BOOK APPOINTMENT</a>
+                                    {% endif %}
                                 {% else %}
                                     <h5>No doctors available for this service.</h5>
                                 {% endif %}
