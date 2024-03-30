@@ -17,7 +17,7 @@ def register(request):
             group, created = Group.objects.get_or_create(name='Customer')
             user.groups.add(group)
             login(request, user)
-            sweetify.success(request, title='Success', text='You have successfully registered.', persistent='Ok')
+            sweetify.success(request, title='Success', text='You have successfully registered.')
             return redirect('homepage')
         else:
             print(form.errors)
@@ -33,7 +33,7 @@ def custom_login(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                sweetify.success(request, title='Success', text='You have successfully logged in.', persistent='Ok')
+                sweetify.success(request, title='Success', text='You have successfully logged in.')
                 next_url = request.GET.get('next', '/')
                 return redirect(next_url)
         else:
@@ -45,7 +45,7 @@ def custom_login(request):
 @login_required
 def custom_logout(request):
     logout(request)
-    sweetify.success(request, title='Success', text='You have successfully logged out.', persistent='Ok')
+    sweetify.success(request, title='Success', text='You have successfully logged out.')
     return redirect('homepage')
 
 @login_required
