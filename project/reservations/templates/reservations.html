@@ -248,7 +248,10 @@
             $('#check-details-button').click(function() {
                 $('#confirm-service').text($('#selected-service').text());
                 $('#confirm-doctor').text($('#selected-doctor').text());
-                $('#confirm-date').text($('#selected-date').text());
+                var date = new Date($('#selected-date').text());
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+                $('#confirm-date').text(formattedDate);
                 $('#confirm-time').text($('#selected-time').text());
             });
 
