@@ -10,7 +10,7 @@ class AdminAccessMiddleware:
     def __call__(self, request):
         admin_url = reverse('admin:index')
         if request.path.startswith(admin_url) and request.user.is_authenticated:
-            if not request.user.is_superuser and not request.user.has_admin_access:
+            if not request.user.is_superuser and not request.user.is_staff:
                 raise Http404("Page not found")
         elif request.path.startswith(admin_url) and not request.user.is_authenticated:
             raise Http404("Page not found")

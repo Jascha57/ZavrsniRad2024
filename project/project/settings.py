@@ -168,6 +168,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# LOGIN AND LOGOUT URL
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+
 # Jazzmin settings
 JAZZMIN_UI_TWEAKS = {
     "theme": "yeti",

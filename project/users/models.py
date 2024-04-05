@@ -12,12 +12,12 @@ class CustomUser(AbstractUser):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
+        ('X', 'Not Specified'),
     )
 
     username = None
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, default='X')
-    has_admin_access = models.BooleanField(default=False)
     profile_picture = models.ImageField(default='default/user.jpg', upload_to=image_upload_to, blank=True)
 
     USERNAME_FIELD = 'email'

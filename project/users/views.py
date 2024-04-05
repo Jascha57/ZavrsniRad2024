@@ -42,10 +42,12 @@ def custom_login(request):
         form = userLoginForm()
     return render(request, 'login.html', {'form': form})
 
-@login_required
 def custom_logout(request):
-    logout(request)
-    sweetify.success(request, title='Success', text='You have successfully logged out.')
+    if request.user.is_authenticated:
+        logout(request)
+        sweetify.success(request, title='Success', text='You have successfully logged out.')
+    else:
+        sweetify.info(request, title='Info', text='You are not logged in.')
     return redirect('homepage')
 
 @login_required
