@@ -7,9 +7,9 @@ class TestViews(TestCase):
     
         def setUp(self):
             self.client = Client()
-            user = CustomUser.objects.create_user(email='testuser', password='12345')
-            staff_user = CustomUser.objects.create_user(email='staffuser', password='12345', is_staff=True, is_superuser=False)
-            admin_user = CustomUser.objects.create_user(email='adminuser', password='12345', is_staff=True, is_superuser=True)
+            self.user = CustomUser.objects.create_user(email='testuser', password='12345')
+            self.staff_user = CustomUser.objects.create_user(email='staffuser', password='12345', is_staff=True, is_superuser=False)
+            self.admin_user = CustomUser.objects.create_user(email='adminuser', password='12345', is_staff=True, is_superuser=True)
             self.login_url = reverse('login')
             self.logout_url = reverse('logout')
             self.register_url = reverse('register')
