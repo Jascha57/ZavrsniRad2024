@@ -20,3 +20,31 @@
     </div>
 </div>
 {% endblock %}
+{% block scripts %}
+<script>
+window.onload = function() {
+    // Select all oembed elements
+    const oembeds = document.querySelectorAll('figure.media oembed');
+
+    oembeds.forEach(oembed => {
+        // Get the URL from the oembed element
+        const url = oembed.getAttribute('url');
+
+        // Check if the URL is a YouTube video URL
+        const match = url.match(/https?:\/\/www\.youtube\.com\/watch\?v=(\w+)/);
+        if (match) {
+            // Get the video ID from the URL
+            const videoId = match[1];
+
+            // Create a new iframe element for the YouTube video
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId;
+            iframe.allow = 'autoplay; encrypted-media';
+
+            // Replace the oembed element with the iframe
+            oembed.parentNode.replaceChild(iframe, oembed);
+        }
+    });
+};
+</script>
+{% endblock %}
