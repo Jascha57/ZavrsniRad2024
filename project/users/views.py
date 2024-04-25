@@ -87,17 +87,27 @@ def download_results(request, reservation_id):
     else:
         raise Http404()
     
-def private_media(request, path, user_id, file_name):
+def hide_results(request, path, user_id, file_name):
     if request.user.is_authenticated:
         if request.user.id == user_id:
-            if path == 'results':
-                try:
-                    response = FileResponse(EncryptedFile(f'media/private/{path}/{user_id}/{file_name}'))
-                    response['Content-Disposition'] = f'attachment; filename="{file_name}"'
-                    return response
-                except:
-                    raise Http404()
-            else:
+            try:
+                response = FileResponse(EncryptedFile(f'media/private/{path}/{user_id}/{file_name}'))
+                response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+                return response
+            except:
+                raise Http404()
+        else:
+            raise Http404()
+    else:
+        raise Http404()
+    
+def hide_profile_pictures(request, path, file_name):
+    if request.user.is_authenticated:
+        if request.user.profile_picture == f'users/{path}/{file_name}':
+            try:
+                response = FileResponse(request.user.profile_picture)
+                return response
+            except:
                 raise Http404()
         else:
             raise Http404()
