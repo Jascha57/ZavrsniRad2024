@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import environ
+import ast
 
 env = environ.Env()
 environ.Env.read_env()
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_recaptcha',
     'sweetify',
+    'encrypted_files',
 
     # Custom apps
     'website',
@@ -206,6 +208,14 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 # Sweetify settings
 # possible options: 'sweetalert', 'sweetalert2' - default is 'sweetalert2'
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+# Encrypted files settings
+AES_KEY = ast.literal_eval(env('AES_KEY'))
+FILE_UPLOAD_HANDLERS = [
+    "encrypted_files.uploadhandler.EncryptedFileUploadHandler",
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler"
+]
 
 # CKEditor settings
 customColorPalette = [

@@ -67,6 +67,7 @@
                             <th>Date: </th>
                             <th>Start Time: </th>
                             <th>End Time: </th>
+                            <th>Results: </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +80,11 @@
                                 <td>{{ reservation.date }}</td>
                                 <td>{{ reservation.start_time }}</td>
                                 <td>{{ reservation.end_time }}</td>
+                                {% if reservation.results_file %}
+                                    <td><a href="{% url 'download_results' reservation.id %}" class="">Download</a></td>
+                                {% else %}
+                                    <td>No results yet.</td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         {% endif %}

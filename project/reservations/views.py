@@ -20,6 +20,11 @@ def services(request):
 
 @login_required
 def reservations(request, service_id=None):
+    # Check if the user has an upcoming reservation
+    if Reservation.objects.filter(user=request.user, date__gte=datetime.now().date()).exists():
+        sweetify.error(request, title='Error', text='You already have an upcoming reservation.', persistent='Ok')
+        return redirect('profile')
+    
     if request.method == 'POST':
         form = ReservationForm(request.POST)
 

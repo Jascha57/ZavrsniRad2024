@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse, Http404
+from encrypted_files.base import EncryptedFile
 import sweetify
 
 from .forms import *
@@ -20,7 +23,7 @@ def register(request):
             sweetify.success(request, title='Success', text='You have successfully registered.')
             return redirect('homepage')
         else:
-            print(form.errors)
+            sweetify.error(request, title='Error', text='Invalid form data.')
     else:
         form = userRegistrationForm()
     return render(request, 'register.html', {'form': form, "register_active": True})
@@ -37,7 +40,7 @@ def custom_login(request):
                 next_url = request.GET.get('next', '/')
                 return redirect(next_url)
         else:
-            print(form.errors)
+            sweetify.error(request, title='Error', text='Invalid username or password.')
     else:
         form = userLoginForm()
     return render(request, 'login.html', {'form': form})
@@ -65,3 +68,18 @@ def profile(request):
     return render(request, 'profile.html', context={
         'reservations': reservations,
     })
+
+def download_results(request, reservation_id):
+    if request.user.is_authenticated:
+        reservation = get_object_or_404(Reservation, id=reservation_id)
+        if reservation.user == request.user:
+            if reservation.results_file:
+                response = FileResponse(EncryptedFile(reservation.results_file))
+                response['Content-Disposition'] = f'attachment; filename="results-{reservation.date}-{reservation.service}.pdf"'
+                return response
+            else:
+                sweetify.error(request, title='Error', text='No results file available.')
+        else:
+            raise Http404()
+    else:
+        raise Http404()
