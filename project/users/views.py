@@ -74,11 +74,31 @@ def download_results(request, reservation_id):
         reservation = get_object_or_404(Reservation, id=reservation_id)
         if reservation.user == request.user:
             if reservation.results_file:
-                response = FileResponse(EncryptedFile(reservation.results_file))
-                response['Content-Disposition'] = f'attachment; filename="results-{reservation.date}-{reservation.service}.pdf"'
-                return response
+                try:
+                    response = FileResponse(EncryptedFile(reservation.results_file))
+                    response['Content-Disposition'] = f'attachment; filename="results-{reservation.date}-{reservation.service}.pdf"'
+                    return response
+                except:
+                    raise Http404()
             else:
                 sweetify.error(request, title='Error', text='No results file available.')
+        else:
+            raise Http404()
+    else:
+        raise Http404()
+    
+def private_media(request, path, user_id, file_name):
+    if request.user.is_authenticated:
+        if request.user.id == user_id:
+            if path == 'results':
+                try:
+                    response = FileResponse(EncryptedFile(f'media/private/{path}/{user_id}/{file_name}'))
+                    response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+                    return response
+                except:
+                    raise Http404()
+            else:
+                raise Http404()
         else:
             raise Http404()
     else:

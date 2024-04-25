@@ -9,5 +9,7 @@ urlpatterns = [
     path('login/', views.custom_login, name='login'),
     path('logout/', views.custom_logout, name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('download_results/<int:reservation_id>/', views.download_results, name='download_results')
+    path('download_results/<int:reservation_id>/', views.download_results, name='download_results'),
+    # Override the media url so that not everyone can access the private media files.
+    path('media/private/<path:path>/<int:user_id>/<path:file_name>', views.private_media, name='private_media'),
 ]
