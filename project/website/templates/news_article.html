@@ -3,9 +3,9 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="my-3">{{ article.title }}</h1>
+    <h1 class="my-5">{{ article.title }}</h1>
     <div>
-        <h2>{{ article.short_description }}</h2>
+        <h5>{{ article.short_description }}</h5>
         <img src="{{ article.author.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
         <small class="text-muted">{{ article.date }} by {{ article.author.first_name }} {{ article.author.last_name }}</small>
     </div>
