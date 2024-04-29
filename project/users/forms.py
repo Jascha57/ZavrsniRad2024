@@ -8,6 +8,7 @@ from django_recaptcha.widgets import ReCaptchaV3
 class userRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email', required=True)
     captcha = ReCaptchaField(widget=ReCaptchaV3)
+    gender = forms.ChoiceField(choices=[('M', 'Male'), ('F', 'Female')])
 
     class Meta:
         model = get_user_model()
