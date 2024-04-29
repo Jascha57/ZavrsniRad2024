@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="my-3 text-center">{{ event.title }}</h1>
+    <h1 class="my-5">{{ event.title }}</h1>
     <div class="row">
         <div class="col-12">
             <i class="fas fa-calendar-alt"></i>
@@ -15,7 +15,7 @@
             <small class="text-muted">{{ event.location }}</small>
         </div>
     </div>
-    <div class="ck-content my-5 text-center">
+    <div class="ck-content my-5">
         {{ event.description|safe }}
     </div>
 </div>
