@@ -123,7 +123,7 @@ def get_times(request):
 
         # Check if the time slot is reserved
         for reservation in reservations:
-            if start >= reservation.start_time and end <= reservation.end_time:
+            if start < reservation.end_time and end > reservation.start_time:
                 times.append({'time': f'{start}', 'filled': True})
                 break
         else:

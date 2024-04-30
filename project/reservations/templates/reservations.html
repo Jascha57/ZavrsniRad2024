@@ -133,6 +133,7 @@
            $('#id_date').change(function() {
                 var date = $(this).val();
                 if (date) {
+                    $('#id_start_time').val('').trigger('change');
                     $.ajax({
                         url: '/get_date/',
                         data: {
