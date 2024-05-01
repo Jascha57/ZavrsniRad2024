@@ -1,9 +1,7 @@
 from django.test import TestCase
-from django.contrib.auth.models import Group
 
 from users.models import CustomUser
 from website.models import Services, Schedule
-from reservations.models import Reservation
 from reservations.forms import *
 
 class TestReservationForm(ReservationForm):
