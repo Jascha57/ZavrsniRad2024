@@ -6,10 +6,6 @@ from website.views import *
 class TestUrls(SimpleTestCase):
 
     def test_home_url_resolves(self):
-        # Sanity check to make sure the URL resolves to the correct view function
-        # url = reverse('home')
-
-        # The URL should resolve to the homepage view function
         url = reverse('homepage')
         self.assertEquals(resolve(url).func, homepage)
 

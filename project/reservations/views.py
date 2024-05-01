@@ -54,6 +54,11 @@ def reservations(request, service_id=None):
             # Get the end time of the reservation from schedule with start time and service
             end_time = Schedule.objects.get(service=service, start_time=start_time)
 
+            overlapping_reservations = Reservation.objects.filter(doctor=doctor, date=date, start_time__lt=end_time, end_time__gt=start_time)
+            if overlapping_reservations.exists():
+                sweetify.error(request, title='Error', text='The selected date and time overlap with an existing reservation.', persistent='Ok')
+                return render(request, 'reservations.html', {'form': form})
+
             # Create the reservation
             reservation = Reservation(user=request.user, doctor=doctor, service=service, date=date, start_time=start_time, end_time=end_time.end_time, description=description)
             reservation.save()
